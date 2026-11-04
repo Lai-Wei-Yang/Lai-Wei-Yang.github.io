@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelancongan Seremban | Negeri Sembilan</title>
+    <!-- Tailwind CSS CDN for modern responsive design -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        seremban: {
+                            50: '#fdf8f6',
+                            100: '#fbeeed',
+                            500: '#e06d53',
+                            600: '#c85338',
+                            700: '#a63e27',
+                            900: '#85321f',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+    <!-- Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-2">
+                <div class="bg-seremban-600 text-white p-2.5 rounded-xl shadow-md">
+                    <i class="fa-solid fa-compass text-xl"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-gray-900">Seremban<span class="text-seremban-600">Destinasi</span></span>
+            </a>
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-600">
+                <a href="#utama" class="hover:text-seremban-600 transition-colors">Utama</a>
+                <a href="#tempat" class="hover:text-seremban-600 transition-colors">Tempat Menarik</a>
+                <a href="#makanan" class="hover:text-seremban-600 transition-colors">Makanan Wajib</a>
+                <a href="#github-ready" class="bg-gray-900 text-white px-4 py-2 rounded-xl hover:bg-seremban-600 transition-colors shadow-sm">GitHub Pages</a>
+            </nav>
+            <button id="mobile-menu-btn" class="md:hidden text-gray-700 focus:outline-none p-2 rounded-lg hover:bg-gray-100">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-100 px-6 py-4 shadow-lg space-y-3">
+            <a href="#utama" class="block text-gray-700 font-medium hover:text-seremban-600">Utama</a>
+            <a href="#tempat" class="block text-gray-700 font-medium hover:text-seremban-600">Tempat Menarik</a>
+            <a href="#makanan" class="block text-gray-700 font-medium hover:text-seremban-600">Makanan Wajib</a>
+            <a href="#github-ready" class="block text-center bg-seremban-600 text-white py-2 rounded-xl">GitHub Pages Ready</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="utama" class="relative pt-32 pb-20 md:pt-44 md:pb-32 bg-gradient-to-br from-gray-900 via-gray-800 to-seremban-900 text-white overflow-hidden">
+        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#e06d53_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="inline-flex items-center gap-1.5 py-1.5 px-4 rounded-full text-xs font-semibold bg-seremban-600/30 text-seremban-100 border border-seremban-500/40 mb-6 backdrop-blur-sm">
+                <i class="fa-solid fa-location-dot"></i> Negeri Sembilan, Malaysia
+            </span>
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                Selamat Datang ke <span class="text-transparent bg-clip-text bg-gradient-to-r from-seremban-500 to-orange-400">Seremban</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-lg sm:text-xl text-gray-300 mb-10 font-light">
+                Terokai keindahan alam, warisan budaya Minangkabau, dan keunikan kulinari di ibu negeri Negeri Sembilan.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#tempat" class="w-full sm:w-auto bg-seremban-600 hover:bg-seremban-700 text-white px-8 py-3.5 rounded-xl font-semibold shadow-lg transition-all duration-300">
+                    Meneroka Sekarang
+                </a>
+                <a href="#makanan" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-3.5 rounded-xl font-semibold backdrop-blur-sm transition-all duration-300">
+                    Cari Makanan
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        
+        <!-- Tempat Menarik Section -->
+        <section id="tempat" class="mb-20">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold tracking-widest text-seremban-600 uppercase mb-3">Destinasi Pilihan</h2>
+                <h3 class="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">Tempat Menarik di Seremban</h3>
+                <p class="mt-4 text-gray-600 text-base sm:text-lg">Lokasi rekreasi dan bersejarah yang wajib anda lawati bersama keluarga.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group">
+                    <div class="relative h-48 overflow-hidden bg-gray-200">
+                        <img src="https://image-tc.galaxy.tf/wiwebp-6q3m0pqyyu87opabf71smhm9m/scenic-view-of-seremban-lake-gardens-with-lush-greenery-and-clear-blue-skies.webp" alt="Taman Tasik Seremban" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h4 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-seremban-600 transition-colors">Taman Tasik Seremban</h4>
+                        <p class="text-gray-600 text-sm mb-4 flex-grow">Salah satu taman rekreasi tertua di Malaysia dengan landskap tasik semula jadi yang cantik dan rimbunan pokok hijau.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group">
+                    <div class="relative h-48 overflow-hidden bg-gray-200">
+                        <img src="https://www.malaysia-traveller.com/images/CentipedeTemple.jpg" alt="Tokong Centipede" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h4 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-seremban-600 transition-colors">Tokong Centipede (Then Sze Koon)</h4>
+                        <p class="text-gray-600 text-sm mb-4 flex-grow">Tokong Cina bersejarah yang terletak di atas Bukit Wu Gong, menawarkan pemandangan indah bandar Seremban.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group">
+                    <div class="relative h-48 overflow-hidden bg-gray-200">
+                        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80" alt="Gunung Angsi" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h4 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-seremban-600 transition-colors">Gunung Angsi</h4>
+                        <p class="text-gray-600 text-sm mb-4 flex-grow">Destinasi popular bagi peminat aktiviti mendaki, terletak berhampiran Taman Rekreasi Ulu Bendul.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group">
+                    <div class="relative h-48 overflow-hidden bg-gray-200">
+                        <img src="https://images.unsplash.com/photo-1566127444979-b3d2b65463d7?auto=format&fit=crop&w=600&q=80" alt="Muzium Negeri" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h4 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-seremban-600 transition-colors">Muzium Negeri Sembilan</h4>
+                        <p class="text-gray-600 text-sm mb-4 flex-grow">Muzium yang mempamerkan seni bina tradisional Minangkabau yang unik serta sejarah tempatan.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Makanan Wajib Cuba Section -->
+        <section id="makanan" class="mb-16 bg-seremban-50 p-8 sm:p-12 rounded-3xl border border-seremban-100">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold tracking-widest text-seremban-600 uppercase mb-3">Kulinari Tempatan</h2>
+                <h3 class="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">Makanan Wajib Cuba</h3>
+                <p class="mt-4 text-gray-600 text-base sm:text-lg">Nikmati pelbagai hidangan ikonik dan lazat yang terkenal di Seremban.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Food 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 flex flex-col">
+                    <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=600&q=80" alt="Siew Pow" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h4 class="text-xl font-bold text-gray-900 mb-2">Siew Pow Seremban</h4>
+                        <p class="text-gray-600 text-sm flex-grow">Pastri tradisional bersalut rangup dengan inti yang berjus dan berempah.</p>
+                    </div>
+                </div>
+
+                <!-- Food 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 flex flex-col">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80" alt="Daging Salai Masak Lemak" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h4 class="text-xl font-bold text-gray-900 mb-2">Daging Salai Masak Lemak</h4>
+                        <p class="text-gray-600 text-sm flex-grow">Hidangan ikonik Negeri Sembilan bersama kuah santan pekat pedas cili padi.</p>
+                    </div>
+                </div>
+
+                <!-- Food 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 flex flex-col">
+                    <img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80" alt="Laksa Seremban" class="w-full h-48 object-cover">
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h4 class="text-xl font-bold text-gray-900 mb-2">Laksa Seremban</h4>
+                        <p class="text-gray-600 text-sm flex-grow">Mi laksa berkuah kari pekat yang kaya dengan rasa rempah ratus tempatan.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GitHub Pages Notice -->
+        <section id="github-ready" class="bg-gray-900 text-white p-8 sm:p-12 rounded-3xl text-center">
+            <div class="inline-flex p-3 bg-seremban-600/20 text-seremban-400 rounded-2xl mb-4">
+                <i class="fa-brands fa-github text-3xl"></i>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-bold mb-4">Sedia untuk Diterbitkan di GitHub Pages</h3>
+            <p class="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">
+                Simpan fail ini sebagai <code class="bg-gray-800 text-seremban-400 px-2 py-1 rounded text-xs font-mono">index.html</code> di dalam repositori awam GitHub anda, dan aktifkan GitHub Pages pada tetapan repositori!
+            </p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="hubungi" class="bg-gray-950 text-gray-400 py-12 border-t border-gray-800 text-center">
+        <p class="text-sm font-medium text-white">&copy; 2026 Pelancongan Seremban. Hak cipta terpelihara.</p>
+        <p class="text-xs text-gray-500 mt-1">Direka khas untuk panduan pelancong dan GitHub Pages.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
