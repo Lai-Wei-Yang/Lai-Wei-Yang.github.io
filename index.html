@@ -6,17 +6,21 @@
   <title>Portfolio & Profil Projek Web</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0b0f19;
-      --card-bg: rgba(23, 32, 54, 0.7);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --primary: #38bdf8;
-      --secondary: #818cf8;
-      --accent: #ec4899;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --card-border: #e2e8f0;
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --secondary: #6366f1;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --tag-bg: #f1f5f9;
+      --tag-text: #475569;
+      --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      --box-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
     }
 
     * {
@@ -33,15 +37,16 @@
       line-height: 1.6;
     }
 
+    /* Ambient soft background gradient */
     .ambient-glow {
       position: fixed;
-      top: -20%;
+      top: -15%;
       left: 50%;
       transform: translateX(-50%);
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(129, 140, 248, 0.08) 50%, transparent 70%);
-      filter: blur(80px);
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, rgba(99, 102, 241, 0.07) 50%, transparent 70%);
+      filter: blur(70px);
       z-index: -1;
       pointer-events: none;
     }
@@ -49,7 +54,7 @@
     .container {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 3rem 1.5rem;
+      padding: 3.5rem 1.5rem;
     }
 
     /* Bahagian Hero */
@@ -61,28 +66,29 @@
     .badge {
       display: inline-block;
       padding: 0.35rem 1rem;
-      font-size: 0.85rem;
-      font-weight: 600;
+      font-size: 0.82rem;
+      font-weight: 700;
       color: var(--primary);
-      background: rgba(56, 189, 248, 0.1);
-      border: 1px solid rgba(56, 189, 248, 0.3);
+      background: #e0f2fe;
+      border: 1px solid #bae6fd;
       border-radius: 9999px;
       margin-bottom: 1.25rem;
       letter-spacing: 0.5px;
     }
 
     h1 {
-      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
       font-weight: 800;
       line-height: 1.2;
-      background: linear-gradient(135deg, #ffffff 30%, var(--primary) 70%, var(--secondary) 100%);
+      background: linear-gradient(135deg, #0f172a 30%, #0284c7 80%, #6366f1 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 1rem;
+      letter-spacing: -0.02em;
     }
 
     header p {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       color: var(--text-muted);
       max-width: 600px;
       margin: 0 auto;
@@ -99,9 +105,9 @@
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 20px;
-      padding: 2rem;
-      backdrop-filter: blur(12px);
-      transition: all 0.35s ease;
+      padding: 2.25rem;
+      box-shadow: var(--box-shadow);
+      transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
       display: flex;
@@ -115,16 +121,16 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 3px;
+      height: 4px;
       background: linear-gradient(90deg, var(--primary), var(--secondary));
       opacity: 0;
-      transition: opacity 0.35s ease;
+      transition: opacity 0.3s ease;
     }
 
     .card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(56, 189, 248, 0.4);
-      box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.5);
+      transform: translateY(-5px);
+      box-shadow: var(--box-shadow-hover);
+      border-color: #cbd5e1;
     }
 
     .card:hover::before {
@@ -138,18 +144,28 @@
       margin-bottom: 1rem;
     }
 
-    .card-meta span {
-      font-size: 0.8rem;
-      font-weight: 700;
+    .card-label {
+      font-size: 0.78rem;
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.2px;
       color: var(--secondary);
     }
 
+    .status-tag {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #15803d;
+      background: #dcfce7;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+    }
+
     .card h2 {
-      font-size: 1.5rem;
+      font-size: 1.45rem;
+      font-weight: 700;
       margin-bottom: 0.75rem;
-      color: #ffffff;
+      color: var(--text-main);
     }
 
     .card-desc {
@@ -160,31 +176,28 @@
     }
 
     .file-tree {
-      background: rgba(11, 15, 25, 0.6);
-      border: 1px dashed rgba(255, 255, 255, 0.12);
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
       border-radius: 12px;
-      padding: 1rem;
+      padding: 1rem 1.25rem;
       margin-bottom: 1.5rem;
       font-size: 0.85rem;
     }
 
     .file-tree-title {
-      font-weight: 600;
-      color: #e2e8f0;
+      font-weight: 700;
+      color: #334155;
       margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
     }
 
     .file-tree ul {
       list-style: none;
-      padding-left: 0.5rem;
+      padding-left: 0.25rem;
     }
 
     .file-tree li {
       color: var(--text-muted);
-      margin: 0.25rem 0;
+      margin: 0.35rem 0;
       display: flex;
       align-items: center;
       gap: 0.5rem;
@@ -193,22 +206,24 @@
     .file-tree li::before {
       content: '↳';
       color: var(--primary);
+      font-weight: bold;
     }
 
     .tech-stack {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
-      margin-bottom: 1.75rem;
+      margin-bottom: 2rem;
     }
 
     .tech-tag {
       font-size: 0.75rem;
-      padding: 0.25rem 0.65rem;
+      font-weight: 600;
+      padding: 0.3rem 0.65rem;
       border-radius: 6px;
-      background: rgba(255, 255, 255, 0.05);
-      color: #cbd5e1;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      border: 1px solid #e2e8f0;
     }
 
     .card-links {
@@ -224,28 +239,30 @@
       border-radius: 10px;
       text-decoration: none;
       font-size: 0.9rem;
-      font-weight: 600;
+      font-weight: 700;
       transition: all 0.2s ease;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: #0b0f19;
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.2);
     }
 
     .btn-primary:hover {
-      filter: brightness(1.15);
-      box-shadow: 0 4px 15px rgba(56, 189, 248, 0.35);
+      background: var(--primary-hover);
+      box-shadow: 0 6px 14px rgba(2, 132, 199, 0.3);
     }
 
     .btn-secondary {
-      background: rgba(255, 255, 255, 0.06);
-      color: var(--text-main);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: #ffffff;
+      color: #334155;
+      border: 1px solid #cbd5e1;
     }
 
     .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.12);
+      background: #f1f5f9;
+      border-color: #94a3b8;
     }
 
     footer {
@@ -256,6 +273,13 @@
       border-top: 1px solid var(--card-border);
       padding-top: 2rem;
     }
+
+    code {
+      background: #e2e8f0;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85em;
+    }
   </style>
 </head>
 <body>
@@ -265,7 +289,7 @@
     <header>
       <div class="badge">E-Portfolio Pembangunan Web</div>
       <h1>Direktori & Profil Projek</h1>
-      <p>Kompilasi hasil kerja praktikal, modul web interaktif, dan tugasan makmal yang telah disiapkan.</p>
+      <p>Kompilasi tugasan makmal dan modul pembangunan web interaktif.</p>
     </header>
 
     <main class="project-grid">
@@ -273,20 +297,20 @@
       <article class="card">
         <div>
           <div class="card-meta">
-            <span>Makmal 01</span>
-            <span style="color: #4ade80;">Siap</span>
+            <span class="card-label">Makmal 01</span>
+            <span class="status-tag">Selesai</span>
           </div>
           <h2>Portal Pelancongan Seremban</h2>
           <p class="card-desc">
-            Pembangunan laman web interaktif bertema pelancongan bagi mempromosikan lokasi tarikan di Seremban, lengkap dengan latihan asas komponen web.
+            Laman web interaktif bagi mempromosikan tempat menarik di Seremban, merangkumi manipulasi DOM, interaktiviti skrip, dan latihan asas komponen web[cite: 1].
           </p>
 
           <div class="file-tree">
-            <div class="file-tree-title">📁 Struktur Fail (lab1/)</div>
+            <div class="file-tree-title">📁 Struktur Fail (lab1/)[cite: 1]</div>
             <ul>
-              <li>index.html (Laman Utama)</li>
-              <li>lat1.html (Latihan 1)</li>
-              <li>seremban_tourism_website.js (Skrip Interaktiviti)</li>
+              <li>index.html (Laman Utama)[cite: 1]</li>
+              <li>lat1.html (Latihan 1)[cite: 1]</li>
+              <li>seremban_tourism_website.js (Skrip Interaktiviti)[cite: 1]</li>
             </ul>
           </div>
 
@@ -308,25 +332,25 @@
       <article class="card">
         <div>
           <div class="card-meta">
-            <span>Makmal 02</span>
-            <span style="color: #38bdf8;">Siap</span>
+            <span class="card-label">Makmal 02</span>
+            <span class="status-tag">Selesai</span>
           </div>
           <h2>Modul Web Lanjutan</h2>
           <p class="card-desc">
-            Pelaksanaan modul susulan makmal 2 yang memfokuskan kepada reka letak responsif, integrasi elemen halaman, dan visual antaramuka moden.
+            Pembangunan modul susulan makmal 2 yang memfokuskan kepada reka bentuk kemas, struktur semantik, dan kebolehsuaian paparan responsif[cite: 1].
           </p>
 
           <div class="file-tree">
-            <div class="file-tree-title">📁 Struktur Fail (lab2/)</div>
+            <div class="file-tree-title">📁 Struktur Fail (lab2/)[cite: 1]</div>
             <ul>
-              <li>index.html (Laman Utama Makmal 2)</li>
+              <li>index.html (Laman Utama Makmal 2)[cite: 1]</li>
             </ul>
           </div>
 
           <div class="tech-stack">
             <span class="tech-tag">HTML5 Semantik</span>
             <span class="tech-tag">CSS Layout</span>
-            <span class="tech-tag">Reka Bentuk Responsif</span>
+            <span class="tech-tag">Responsif</span>
           </div>
         </div>
 
@@ -337,7 +361,7 @@
     </main>
 
     <footer>
-      <p>© Pengkompilasian Projek Web & Tugasan Makmal. Simpan fail ini pada direktori utama bersama folder <code>lab1/</code> dan <code>lab2/</code>.</p>
+      <p>© Profil Projek Web. Simpan fail ini bersebelahan folder <code>lab1/</code> dan <code>lab2/</code>.</p>
     </footer>
   </div>
 </body>
