@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Seremban - Tourism & Travel Guide</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        seremban: {
+                            50: '#fdf8f6',
+                            100: '#fbeeed',
+                            500: '#e06d53',
+                            600: '#c85338',
+                            700: '#a63e27',
+                            900: '#85321f',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-2">
+                <div class="bg-seremban-600 text-white p-2.5 rounded-xl shadow-md">
+                    <i class="fa-solid fa-compass text-xl"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-gray-900">Discover<span class="text-seremban-600">Seremban</span></span>
+            </a>
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-600">
+                <a href="#attractions" class="hover:text-seremban-600 transition-colors">Attractions</a>
+                <a href="#food" class="hover:text-seremban-600 transition-colors">Local Food</a>
+                <a href="#tips" class="hover:text-seremban-600 transition-colors">Travel Tips</a>
+                <a href="#github-ready" class="bg-gray-900 text-white px-4 py-2 rounded-xl hover:bg-seremban-600 transition-colors shadow-sm">GitHub Pages Ready</a>
+            </nav>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-gray-700 focus:outline-none p-2 rounded-lg hover:bg-gray-100">
+                <i class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <!-- Mobile Nav Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-100 px-6 py-4 shadow-lg space-y-3">
+            <a href="#attractions" class="block text-gray-700 font-medium hover:text-seremban-600">Attractions</a>
+            <a href="#food" class="block text-gray-700 font-medium hover:text-seremban-600">Local Food</a>
+            <a href="#tips" class="block text-gray-700 font-medium hover:text-seremban-600">Travel Tips</a>
+            <a href="#github-ready" class="block text-center bg-seremban-600 text-white py-2 rounded-xl">GitHub Pages Ready</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 md:pt-44 md:pb-32 bg-gradient-to-br from-gray-900 via-gray-800 to-seremban-900 text-white overflow-hidden">
+        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#e06d53_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <span class="inline-flex items-center gap-1.5 py-1.5 px-4 rounded-full text-xs font-semibold bg-seremban-600/30 text-seremban-100 border border-seremban-500/40 mb-6 backdrop-blur-sm">
+                <i class="fa-solid fa-location-dot"></i> Negeri Sembilan, Malaysia
+            </span>
+            <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                Experience the Charm of <span class="text-transparent bg-clip-text bg-gradient-to-r from-seremban-500 to-orange-400">Seremban</span>
+            </h1>
+            <p class="max-w-2xl mx-auto text-lg sm:text-xl text-gray-300 mb-10 font-light">
+                From historical Minangkabau heritage and scenic hilltops to mouth-watering beef noodles and crispy siew pau, uncover your next weekend getaway.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#attractions" class="w-full sm:w-auto bg-seremban-600 hover:bg-seremban-700 text-white px-8 py-3.5 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-0.5">
+                    Explore Attractions
+                </a>
+                <a href="#food" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-3.5 rounded-xl font-semibold backdrop-blur-sm transition-all duration-300">
+                    Discover Food
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Attractions Section -->
+    <section id="attractions" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-xs font-bold tracking-widest text-seremban-600 uppercase mb-3">Must-Visit Places</h2>
+            <h3 class="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">Top Attractions in Seremban</h3>
+            <p class="mt-4 text-gray-600 text-base sm:text-lg">Immerse yourself in nature, architecture, and local heritage spots that make Seremban unique.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Attraction 1 -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group">
+                <div class="relative h-52 overflow-hidden bg-gray-200">
+                    <img src="https://placehold.co/600x400/e2e8f0/475569?text=Centipede+Temple" alt="Centipede Temple" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/f1f5f9/64748b?text=Attraction'">
+                    <span class="absolute top-4 right-4 bg-white/90 backdrop-blur-md text-gray-800 text-xs font-bold px-3 py-1 rounded-full shadow-sm">Culture & View</span>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h4 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-seremban-600 transition-colors">Centipede Temple (Then Sze Koon)</h4>
+                    <p class="text-gray-600 text-sm mb-4 flex-grow">Perched atop Wu Gong Hill, this historic Taoist temple features stunning panoramic views of Seremban town, peaceful koi ponds, and a giant centipede structure.</p>
+                    <div class="flex items-center text-xs text-gray-500 pt-4 border-t border-gray-100">
+                        <i class="fa-solid fa-clock text-seremban-600 mr-2"></i> Open daily: 8:00 AM - 6:00 PM
+                    </div>
+                </div>
+            </div>
+
+            <!-- Attraction 2 -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group">
+                <div class="relative h-52 overflow-hidden bg-gray-200">
+                    <img src="https://placehold.co/600x400/e2e8f0/475569?text=Seremban+Lake+Garden" alt="Seremban Lake Garden" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/f1f5f9/64748b?text=Attraction'">
+                    <span class="absolute top-4 right-4 bg-white/90 backdrop-blur-md text-gray-800 text-xs font-bold px-3 py-1 rounded-full shadow-sm">Nature</span>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h4 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-seremban-600 transition-colors">Seremban Lake Garden</h4>
+                    <p class="text-gray-600 text-sm mb-4 flex-grow">One of Malaysia's oldest natural lake gardens. Beautifully manicured lawns, shady trees, and historic roots—including the site of the first rubber tree planted in the state.</p>
+                    <div class="flex items-center text-xs text-gray-500 pt-4 border-t border-gray-100">
+                        <i class="fa-solid fa-clock text-seremban-600 mr-2"></i> Open 24 hours
+                    </div>
+                </div>
+            </div>
+
+            <!-- Attraction 3 -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group">
+                <div class="relative h-52 overflow-hidden bg-gray-200">
+                    <img src="https://placehold.co/600x400/e2e8f0/475569?text=Gunung+Angsi" alt="Gunung Angsi" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/f1f5f9/64748b?text=Attraction'">
+                    <span class="absolute top-4 right-4 bg-white/90 backdrop-blur-md text-gray-800 text-xs font-bold px-3 py-1 rounded-full shadow-sm">Adventure</span>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h4 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-seremban-600 transition-colors">Gunung Angsi</h4>
+                    <p class="text-gray-600 text-sm mb-4 flex-grow">Standing at 825 meters within Ulu Bendul Recreational Park, it offers an exhilarating 3-to-4-hour hiking trail through lush tropical rainforest streams.</p>
+                    <div class="flex items-center text-xs text-gray-500 pt-4 border-t border-gray-100">
+                        <i class="fa-solid fa-clock text-seremban-600 mr-2"></i> Best visited in the morning
+                    </div>
+                </div>
+            </div>
+
+            <!-- Attraction 4 -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group">
+                <div class="relative h-52 overflow-hidden bg-gray-200">
+                    <img src="https://placehold.co/600x400/e2e8f0/475569?text=State+Museum" alt="NS State Museum" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/f1f5f9/64748b?text=Attraction'">
+                    <span class="absolute top-4 right-4 bg-white/90 backdrop-blur-md text-gray-800 text-xs font-bold px-3 py-1 rounded-full shadow-sm">History</span>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h4 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-seremban-600 transition-colors">Negeri Sembilan State Museum</h4>
+                    <p class="text-gray-600 text-sm mb-4 flex-grow">Showcasing traditional Minangkabau architecture (Rumah Gadang), featuring the historic Istana Ampang Tinggi palace built completely without iron nails.</p>
+                    <div class="flex items-center text-xs text-gray-500 pt-4 border-t border-gray-100">
+                        <i class="fa-solid fa-clock text-seremban-600 mr-2"></i> Daily: 9:00 AM - 5:00 PM
+                    </div>
+                </div>
+            </div>
+
+            <!-- Attraction 5 -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group">
+                <div class="relative h-52 overflow-hidden bg-gray-200">
+                    <img src="https://placehold.co/600x400/e2e8f0/475569?text=Royal+Gallery" alt="Royal Gallery" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/f1f5f9/64748b?text=Attraction'">
+                    <span class="absolute top-4 right-4 bg-white/90 backdrop-blur-md text-gray-800 text-xs font-bold px-3 py-1 rounded-full shadow-sm">Heritage</span>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h4 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-seremban-600 transition-colors">Tuanku Ja'afar Royal Gallery</h4>
+                    <p class="text-gray-600 text-sm mb-4 flex-grow">An architectural masterpiece dedicated to the life and reign of the late Yang di-Pertuan Besar of Negeri Sembilan, filled with royal artifacts and photographs.</p>
+                    <div class="flex items-center text-xs text-gray-500 pt-4 border-t border-gray-100">
+                        <i class="fa-solid fa-clock text-seremban-600 mr-2"></i> Tue - Sun: 10:00 AM - 5:30 PM
+                    </div>
+                </div>
+            </div>
+
+            <!-- Attraction 6 -->
+            <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col group">
+                <div class="relative h-52 overflow-hidden bg-gray-200">
+                    <img src="https://placehold.co/600x400/e2e8f0/475569?text=Seremban+Cultural+Complex" alt="Cultural Complex" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/f1f5f9/64748b?text=Attraction'">
+                    <span class="absolute top-4 right-4 bg-white/90 backdrop-blur-md text-gray-800 text-xs font-bold px-3 py-1 rounded-full shadow-sm">Culture</span>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h4 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-seremban-600 transition-colors">Seremban Cultural Complex</h4>
+                    <p class="text-gray-600 text-sm mb-4 flex-grow">A vibrant space celebrating local arts, traditional crafts, and cultural performances unique to the Minangkabau heritage of Negeri Sembilan.</p>
+                    <div class="flex items-center text-xs text-gray-500 pt-4 border-t border-gray-100">
+                        <i class="fa-solid fa-clock text-seremban-600 mr-2"></i> Open daily for visitors
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Local Food / Cravings Section -->
+    <section id="food" class="py-20 bg-seremban-50 border-y border-seremban-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold tracking-widest text-seremban-600 uppercase mb-3">Culinary Delights</h2>
+                <h3 class="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">Famous Seremban Cravings</h3>
+                <p class="mt-4 text-gray-600 text-base sm:text-lg">No trip to Seremban is complete without trying these legendary local delicacies.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Food 1 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-seremban-100 text-seremban-600 rounded-2xl flex items-center justify-center text-2xl font-bold mb-6">
+                            <i class="fa-solid fa-bowl-food"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-3">Seremban Beef Noodles</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                            A legendary dish featuring smooth rice noodles topped with tender beef slices, rich aromatic dark gravy, crushed peanuts, pickled salted vegetables, and savory minced meat.
+                        </p>
+                    </div>
+                    <div class="bg-gray-50 px-4 py-3 rounded-xl text-xs font-medium text-gray-500 flex items-center justify-between">
+                        <span>Top Spot: Seremban Pasar Besar</span>
+                        <span class="text-seremban-600 font-bold">Must Try</span>
+                    </div>
+                </div>
+
+                <!-- Food 2 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-seremban-100 text-seremban-600 rounded-2xl flex items-center justify-center text-2xl font-bold mb-6">
+                            <i class="fa-solid fa-cookie-bite"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-3">Seremban Siew Pau</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                            Famous for its flaky, golden-brown pastry crust stuffed with savory, slightly sweet barbecued pork (char siu) filling. Baked fresh daily by local heritage bakeries.
+                        </p>
+                    </div>
+                    <div class="bg-gray-50 px-4 py-3 rounded-xl text-xs font-medium text-gray-500 flex items-center justify-between">
+                        <span>Top Spot: Kee Mei Siew Pau</span>
+                        <span class="text-seremban-600 font-bold">Souvenir Favorite</span>
+                    </div>
+                </div>
+
+                <!-- Food 3 -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 bg-seremban-100 text-seremban-600 rounded-2xl flex items-center justify-center text-2xl font-bold mb-6">
+                            <i class="fa-solid fa-ice-cream"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold text-gray-900 mb-3">Refreshing Cendol</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                            Beat the tropical Malaysian heat with a bowl of shaved ice drizzled with rich coconut milk, aromatic Gula Melaka (palm sugar syrup), green rice flour jelly, and red beans.
+                        </p>
+                    </div>
+                    <div class="bg-gray-50 px-4 py-3 rounded-xl text-xs font-medium text-gray-500 flex items-center justify-between">
+                        <span>Top Spot: Local Street Stalls</span>
+                        <span class="text-seremban-600 font-bold">Refreshing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Travel Tips Section -->
+    <section id="tips" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-xs font-bold tracking-widest text-seremban-600 uppercase mb-3">Plan Your Trip</h2>
+            <h3 class="text-3xl sm:text-4xl font-bold text-gray-900 tracking-tight">How to Get Here & Travel Tips</h3>
+            <p class="mt-4 text-gray-600 text-base sm:text-lg">Quick practical guide to ensure a smooth journey to Seremban.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Tip 1 -->
+            <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm">
+                <div class="text-seremban-600 text-2xl mb-4 font-bold">
+                    <i class="fa-solid fa-train"></i>
+                </div>
+                <h4 class="text-lg font-bold text-gray-900 mb-2">By Train (KTM Komuter)</h4>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    Take the KTM Komuter train directly from KL Sentral or Sepang/Nilai down to Seremban Railway Station. It's affordable, comfortable, and drops you right near the town center.
+                </p>
+            </div>
+
+            <!-- Tip 2 -->
+            <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm">
+                <div class="text-seremban-600 text-2xl mb-4 font-bold">
+                    <i class="fa-solid fa-car"></i>
+                </div>
+                <h4 class="text-lg font-bold text-gray-900 mb-2">By Car / Highway</h4>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    A convenient 45-to-60-minute drive from Kuala Lumpur via the North-South Expressway (PLUS). Perfect for a spontaneous weekend road trip with friends or family.
+                </p>
+            </div>
+
+            <!-- Tip 3 -->
+            <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm">
+                <div class="text-seremban-600 text-2xl mb-4 font-bold">
+                    <i class="fa-solid fa-sun"></i>
+                </div>
+                <h4 class="text-lg font-bold text-gray-900 mb-2">Best Time to Visit</h4>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                    Early mornings are ideal for visiting Gunung Angsi or wandering around the vibrant Seremban Pasar Besar wet market before food stalls get busy around lunchtime.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHub Pages Readiness Notice Section -->
+    <section id="github-ready" class="py-16 bg-gray-900 text-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-flex p-3 bg-seremban-600/20 text-seremban-400 rounded-2xl mb-4">
+                <i class="fa-brands fa-github text-3xl"></i>
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-bold mb-4">Ready to Publish on GitHub Pages</h3>
+            <p class="text-gray-400 max-w-2xl mx-auto mb-8 text-sm sm:text-base">
+                This single-file website is fully optimized for GitHub Pages. Simply create a repository, name this file <code class="bg-gray-800 text-seremban-400 px-2 py-1 rounded text-xs font-mono">index.html</code>, and enable GitHub Pages in your repository settings!
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="#attractions" class="bg-seremban-600 hover:bg-seremban-700 text-white font-semibold px-6 py-3 rounded-xl text-sm transition-colors">
+                    Back to Top
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 text-gray-400 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+            <div>
+                <p class="text-sm font-medium text-white">Discover Seremban Travel Guide</p>
+                <p class="text-xs text-gray-500 mt-1">Built with HTML5 & Tailwind CSS for GitHub Pages.</p>
+            </div>
+            <div class="text-xs text-gray-500">
+                &copy; 2026 Discover Seremban. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
