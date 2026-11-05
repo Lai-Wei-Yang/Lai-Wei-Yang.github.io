@@ -1,0 +1,16 @@
+OFFLINE PROFILE PICTURE — LAB 4 HOMEPAGE
+
+The homepage uses this local file:
+lab4/assets/images/profile.jpg
+
+To use your own photo:
+1. Choose a clear, professional portrait.
+2. Crop it to a square (1:1) if possible.
+3. Rename it exactly to: profile.jpg
+4. Replace the placeholder file in: lab4/assets/images/
+5. Keep the same filename and folder path.
+
+The HTML already contains:
+<img class="profile-photo" src="assets/images/profile.jpg" alt="Profile picture of Lai Wei Yang">
+
+No internet connection is needed to display this profile picture.
