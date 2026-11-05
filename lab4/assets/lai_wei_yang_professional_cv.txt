@@ -1,0 +1,34 @@
+LAI WEI YANG
+SOFTWARE ENGINEERING UNDERGRADUATE
+[Phone]  |  [Professional Email]  |  Malaysia  |  github.com/Lai-Wei-Yang
+PROFESSIONAL SUMMARY
+Third-year Software Engineering undergraduate at Universiti Kebangsaan Malaysia (UKM) with hands-on academic and personal project experience in application and web development. Familiar with Java, Python, JavaScript, Kotlin, front-end technologies, databases and Git-based version control. Interested in building practical, user-focused software and seeking an internship opportunity to contribute to a development team while strengthening software engineering skills.
+EDUCATION
+Universiti Kebangsaan Malaysia (UKM)  |  Bangi, Selangor
+Bachelor's Degree in Software Engineering  |  [Start Year] � Present
+Faculty of Information Science and Technology
+TECHNICAL SKILLS
+Programming: Java, Python, JavaScript, Kotlin, PHP, HTML5, CSS3
+Frameworks & Libraries: React, Node.js, Tailwind CSS, Flask, Jetpack Compose
+Databases: MySQL, MongoDB
+Tools & Platforms: Git, GitHub, Postman, Visual Studio, Android Studio
+Core Knowledge: Object-Oriented Programming, Data Structures, Database Design, REST API fundamentals, UI development
+SELECTED PROJECTS
+FundRakyat  |  GitHub project
+Public repository demonstrating project-based software development. Add a concise description of the problem solved, your role, main features and technologies used.
+Kotlin Application Projects  |  UKM academic projects
+Developed application coursework using Kotlin. Add the application purpose, key screens or functions, Jetpack Compose usage (if applicable), and your individual contribution.
+Personal Developer Portfolio  |  github.com/Lai-Wei-Yang
+Maintains a public GitHub presence and portfolio repository to present software projects and development work.
+myUKM Smart Bus Enhancement Concept  |  Academic systems project
+Explored a proposed bus-tracking solution featuring live GPS location, estimated arrival times, service notifications and driver-related information; considered student and driver requirements.
+ResiuMind � AI Resume Builder  |  Startup / business project
+Contributed to planning an AI-assisted resume-building concept for students, fresh graduates and first-time job seekers, including template design, onboarding and user-testing activities.
+LEADERSHIP & ACTIVITIES
+� Represented UKM in the BlenderXplore: Pixel2Polygon Training of Trainers (ToT) workshop.
+� Involved in student multimedia / interactive activities and programme-related committee work. Add official club name, position and dates before submission.
+ADDITIONAL INFORMATION
+Career Interest: Software Engineering Intern | Software Developer Intern | Web / Application Development Intern
+Languages: [Add languages and proficiency levels]
+LAI WEI YANG  �  CURRICULUM VITAE
+
