@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jom Singgah Seremban | Destinasi & Makanan Halal Terpilih</title>
+    <title>Dashboard Demografi Penduduk Malaysia (1970-2026)</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -11,18 +11,7 @@
             theme: {
                 extend: {
                     colors: {
-                        emerald: {
-                            50: '#ecfdf5',
-                            100: '#d1fae5',
-                            600: '#059669',
-                            700: '#047857',
-                            800: '#065f46',
-                            900: '#064e3b'
-                        },
-                        amber: {
-                            500: '#f59e0b',
-                            600: '#d97706'
-                        }
+                        primary: { 50: '#eef2ff', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca', 900: '#312e81' }
                     }
                 }
             }
@@ -33,265 +22,129 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased">
+<body class="bg-gray-50 text-gray-800 antialiased">
 
-    <!-- Navbar -->
-    <header class="bg-emerald-900 text-white shadow-md sticky top-0 z-50">
+    <!-- Header / Navbar -->
+    <header class="bg-indigo-900 text-white shadow-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="bg-emerald-700/80 p-2.5 rounded-xl shadow border border-emerald-600">
-                    <i class="fa-solid fa-mosque text-xl text-emerald-200"></i>
+                <div class="bg-indigo-700 p-2.5 rounded-xl shadow">
+                    <i class="fa-solid fa-chart-pie text-xl text-indigo-200"></i>
                 </div>
                 <div>
-                    <h1 class="text-lg font-bold tracking-tight">Jom Melancong ke Seremban</h1>
-                    <p class="text-xs text-emerald-200">Panduan Pelancongan Tradisi & Syurga Makanan Halal</p>
+                    <h1 class="text-lg font-bold tracking-tight">Dashboard Demografi Malaysia</h1>
+                    <p class="text-xs text-indigo-300">Analisis Rasmi Penduduk (1970 – 2026)</p>
                 </div>
             </div>
-            <div class="hidden sm:flex items-center space-x-2 text-xs bg-emerald-800/80 px-3.5 py-2 rounded-full border border-emerald-700">
-                <i class="fa-solid fa-certificate text-amber-400"></i>
-                <span class="font-medium text-emerald-100">100% Pilihan Halal & Mesra Muslim</span>
+            <div class="hidden sm:flex items-center space-x-2 text-xs bg-indigo-800/80 px-3 py-1.5 rounded-lg border border-indigo-700">
+                <i class="fa-solid fa-database text-indigo-400"></i>
+                <span>Dataset Rasmi Terkini</span>
             </div>
         </div>
     </header>
 
-    <!-- Hero Banner -->
-    <section class="relative bg-gradient-to-r from-emerald-900 via-emerald-800 to-teal-900 text-white py-16 px-4 sm:px-6 lg:px-8">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
-            <div class="max-w-2xl space-y-4">
-                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-700/50 text-emerald-200 border border-emerald-500/30">
-                    <i class="fa-solid fa-utensils"></i> Khas Untuk Penggemar Makanan Nogori
-                </span>
-                <h2 class="text-3xl sm:text-5xl font-extrabold leading-tight">
-                    Keunikan Adat Perpatih & Santapan Masak Lemak Salai
-                </h2>
-                <p class="text-sm sm:text-base text-emerald-100/90 leading-relaxed">
-                    Nikmati percutian santai hujung minggu di Seremban dengan melawat tempat warisan budaya Melayu Minangkabau serta meneroka menu salai cili api dan cendol tradisi yang menggiurkan.
-                </p>
-                <div class="pt-2 flex flex-wrap gap-3">
-                    <a href="#makanan" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold text-sm shadow transition">
-                        <i class="fa-solid fa-bowl-food mr-1.5"></i> Teroka Makanan Halal
-                    </a>
-                    <a href="#tarikan" class="px-5 py-2.5 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-semibold text-sm border border-emerald-500 transition">
-                        <i class="fa-solid fa-landmark mr-1.5"></i> Tempat Tarikan
-                    </a>
-                </div>
-            </div>
-            <!-- Quick Stat Mini Card -->
-            <div class="w-full md:w-80 bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/15 space-y-3">
-                <div class="flex items-center justify-between pb-3 border-b border-white/10">
-                    <span class="text-xs text-emerald-200 font-medium">Jarak dari KL</span>
-                    <span class="text-sm font-bold text-white">~55 - 65 km</span>
-                </div>
-                <div class="flex items-center justify-between pb-3 border-b border-white/10">
-                    <span class="text-xs text-emerald-200 font-medium">Menu Khas Wajib</span>
-                    <span class="text-sm font-bold text-amber-300">Daging Salai Cili Api</span>
-                </div>
-                <div class="flex items-center justify-between">
-                    <span class="text-xs text-emerald-200 font-medium">Sesuai Untuk</span>
-                    <span class="text-sm font-bold text-white">Keluarga & Foodie</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Main Content Container -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
         <!-- Stat Summary Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex items-center justify-between">
+            <!-- Card 1 -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-center justify-between">
                 <div>
-                    <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Pilihan Makanan</p>
-                    <h3 class="text-2xl font-bold text-slate-900 mt-1">100% Halal</h3>
-                    <p class="text-xs text-emerald-600 font-semibold mt-1"><i class="fa-solid fa-check"></i> Masakan Melayu & Arab</p>
-                </div>
-                <div class="p-3 bg-emerald-50 text-emerald-700 rounded-2xl text-xl">
-                    <i class="fa-solid fa-drumstick-bite"></i>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex items-center justify-between">
-                <div>
-                    <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Warisan Budaya</p>
-                    <h3 class="text-xl font-bold text-slate-900 mt-1">Adat Perpatih</h3>
-                    <p class="text-xs text-slate-500 font-medium mt-1">Seni bina bumbung tanduk</p>
-                </div>
-                <div class="p-3 bg-amber-50 text-amber-600 rounded-2xl text-xl">
-                    <i class="fa-solid fa-house-chimney"></i>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex items-center justify-between">
-                <div>
-                    <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Aktiviti Rekreasi</p>
-                    <h3 class="text-2xl font-bold text-slate-900 mt-1">Taman & Tasik</h3>
-                    <p class="text-xs text-emerald-600 font-semibold mt-1">Mesra kanak-kanak & riadah</p>
-                </div>
-                <div class="p-3 bg-teal-50 text-teal-600 rounded-2xl text-xl">
-                    <i class="fa-solid fa-tree"></i>
-                </div>
-            </div>
-
-            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 flex items-center justify-between">
-                <div>
-                    <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Waktu Terhangat</p>
-                    <h3 class="text-2xl font-bold text-slate-900 mt-1">Makan Tengahari</h3>
-                    <p class="text-xs text-slate-500 font-medium mt-1">12:00 PM – 2:30 PM</p>
+                    <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Jumlah Populasi (2026)</p>
+                    <h3 class="text-2xl font-bold text-gray-900 mt-1">34.39 Juta</h3>
+                    <p class="text-xs text-emerald-600 font-semibold mt-1"><i class="fa-solid fa-arrow-trend-up"></i> +5.5% dari 2020</p>
                 </div>
                 <div class="p-3 bg-indigo-50 text-indigo-600 rounded-2xl text-xl">
-                    <i class="fa-solid fa-clock"></i>
+                    <i class="fa-solid fa-users"></i>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Etnik Majoriti (2026)</p>
+                    <h3 class="text-xl font-bold text-gray-900 mt-1">Bumiputera Melayu</h3>
+                    <p class="text-xs text-indigo-600 font-semibold mt-1">18.13 Juta Jiwa</p>
+                </div>
+                <div class="p-3 bg-blue-50 text-blue-600 rounded-2xl text-xl">
+                    <i class="fa-solid fa-earth-asia"></i>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Populasi Lelaki (2026)</p>
+                    <h3 class="text-2xl font-bold text-gray-900 mt-1">18.03 Juta</h3>
+                    <p class="text-xs text-gray-500 font-medium mt-1">Majoriti kecil (~52.4%)</p>
+                </div>
+                <div class="p-3 bg-emerald-50 text-emerald-600 rounded-2xl text-xl">
+                    <i class="fa-solid fa-mars"></i>
+                </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Populasi Perempuan (2026)</p>
+                    <h3 class="text-2xl font-bold text-gray-900 mt-1">16.36 Juta</h3>
+                    <p class="text-xs text-gray-500 font-medium mt-1">~47.6% keseluruhan</p>
+                </div>
+                <div class="p-3 bg-rose-50 text-rose-600 rounded-2xl text-xl">
+                    <i class="fa-solid fa-venus"></i>
                 </div>
             </div>
         </div>
 
-        <!-- Section: Tempat Menarik Lazim Pelancong Melayu -->
-        <section id="tarikan" class="space-y-6">
-            <div class="flex items-center justify-between border-b border-slate-200 pb-4">
-                <div>
-                    <h2 class="text-2xl font-bold text-slate-900">Tempat Tarikan Popular di Seremban</h2>
-                    <p class="text-sm text-slate-500">Lokasi tumpuan bersejarah, ibadah, dan riadah sekeluarga</p>
-                </div>
-                <span class="text-xs font-semibold px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full hidden sm:inline-block">Mesra Keluarga</span>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Card Tarikan 1 -->
-                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
-                    <div class="h-48 overflow-hidden bg-slate-100 relative">
-                        <img src="https://myheritagebuildings.wordpress.com/wp-content/uploads/2016/05/22760404753_b8fb7bff54_z.jpg" alt="Masjid Negeri Seremban" class="w-full h-full object-cover">
-                        <span class="absolute top-3 right-3 bg-emerald-900/80 text-white text-[11px] font-semibold px-2.5 py-1 rounded-full backdrop-blur-sm">Ibadah & Seni Bina</span>
-                    </div>
-                    <div class="p-5 space-y-2">
-                        <h3 class="font-bold text-lg text-slate-900">Masjid Negeri Seremban</h3>
-                        <p class="text-xs text-slate-600 leading-relaxed">
-                            Pusat ibadah utama dengan gabungan seni bina moden dan sentuhan kubah Minangkabau. Lokasi strategik untuk solat berjemaah semasa percutian.
-                        </p>
-                        <div class="pt-2 text-xs text-slate-500 flex items-center gap-2">
-                            <i class="fa-solid fa-location-dot text-emerald-600"></i> Jalan Dato Hamzah, Seremban
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card Tarikan 2 -->
-                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
-                    <div class="h-48 overflow-hidden bg-slate-100 relative">
-                        <img src="https://baskl.com.my/wp-content/uploads/2023/05/WhatsApp-Image-2023-05-17-at-15.17.41.jpeg" alt="Muzium Negeri Seremban" class="w-full h-full object-cover">
-                        <span class="absolute top-3 right-3 bg-amber-700/80 text-white text-[11px] font-semibold px-2.5 py-1 rounded-full backdrop-blur-sm">Warisan Sejarah</span>
-                    </div>
-                    <div class="p-5 space-y-2">
-                        <h3 class="font-bold text-lg text-slate-900">Muzium Negeri Sembilan</h3>
-                        <p class="text-xs text-slate-600 leading-relaxed">
-                            Terletak di Kompleks Budaya Negeri Sembilan, mempamerkan Rumah Tradisional Minangkabau serta sejarah warisan Adat Perpatih.
-                        </p>
-                        <div class="pt-2 text-xs text-slate-500 flex items-center gap-2">
-                            <i class="fa-solid fa-location-dot text-emerald-600"></i> Jalan Sungai Ujong, Seremban
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card Tarikan 3 -->
-                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
-                    <div class="h-48 overflow-hidden bg-slate-100 relative">
-                        <img src="https://ak-d.tripcdn.com/images/1mi2g224x8uo2jzd8047C_Q90.jpg?proc=source/trip" alt="Taman Tasik Seremban" class="w-full h-full object-cover">
-                        <span class="absolute top-3 right-3 bg-teal-800/80 text-white text-[11px] font-semibold px-2.5 py-1 rounded-full backdrop-blur-sm">Riadah Santai</span>
-                    </div>
-                    <div class="p-5 space-y-2">
-                        <h3 class="font-bold text-lg text-slate-900">Taman Tasik Seremban</h3>
-                        <p class="text-xs text-slate-600 leading-relaxed">
-                            Tempat santai yang redup dengan trek jogging, jambatan tasik, dan kawasan permainan kanak-kanak yang popular pada waktu petang.
-                        </p>
-                        <div class="pt-2 text-xs text-slate-500 flex items-center gap-2">
-                            <i class="fa-solid fa-location-dot text-emerald-600"></i> Jalan Taman Bunga, Seremban
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section: Port Makanan Halal & Tradisi -->
-        <section id="makanan" class="space-y-6">
-            <div class="flex items-center justify-between border-b border-slate-200 pb-4">
-                <div>
-                    <h2 class="text-2xl font-bold text-slate-900">Port Makan Halal Wajib Cuba</h2>
-                    <p class="text-sm text-slate-500">Daripada lauk salai cili api sehingga pemanis mulut legasi</p>
-                </div>
-                <span class="text-xs font-semibold px-3 py-1 bg-amber-100 text-amber-800 rounded-full">Menu Nogori Asli</span>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Food 1 -->
-                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
-                    <div class="h-48 overflow-hidden bg-slate-100 relative">
-                        <img src="https://www.rasa.my/wp-content/uploads/2020/07/RSR-daging-salai-cili-padi-3.jpg" alt="Daging Salai Masak Lemak Cili Api" class="w-full h-full object-cover">
-                        <span class="absolute top-3 left-3 bg-red-600 text-white text-[11px] font-bold px-2 py-0.5 rounded shadow">Pedas & Berlemak</span>
-                    </div>
-                    <div class="p-5 space-y-2">
-                        <h3 class="font-bold text-lg text-slate-900">Masak Lemak Daging Salai</h3>
-                        <p class="text-xs text-slate-600 leading-relaxed">
-                            Ikon kuliner Nogori! Daging disalai menggunakan tempurung kelapa dan dimasak pekat bersama cili api serta kunyit hidup.
-                        </p>
-                        <p class="text-xs font-semibold text-emerald-700">Port Rekomen: Restoran Selera Nogori / Sabak Salai</p>
-                    </div>
-                </div>
-
-                <!-- Food 2 -->
-                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
-                    <div class="h-48 overflow-hidden bg-slate-100 relative">
-                        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhLwBNHhp7r8NdwWW_ZZ0twYZBOZ3517qLgIz23R84Ux8OwfbXGzBeMXTd41MK15LxQnZ2wBDejoVp_VKNDPg3VyC0wpPdFydygZYgU4_VruqIUUQDexKlNW6fHFbwHlgORntD8WrGaE0mI/s1600/DSC_0050jk.JPG" alt="Cendol Haji Shariff" class="w-full h-full object-cover">
-                        <span class="absolute top-3 left-3 bg-amber-600 text-white text-[11px] font-bold px-2 py-0.5 rounded shadow">Sejak 1930-an</span>
-                    </div>
-                    <div class="p-5 space-y-2">
-                        <h3 class="font-bold text-lg text-slate-900">Haji Shariff Cendol</h3>
-                        <p class="text-xs text-slate-600 leading-relaxed">
-                            Port pencuci mulut paling ikonik di Seremban. Santan berkrim, gula melaka pekat, dan pilihan pulut atau kacang merah yang menyegarkan.
-                        </p>
-                        <p class="text-xs font-semibold text-emerald-700">Lokasi: Jalan Yam Tuan, Pusat Bandar Seremban</p>
-                    </div>
-                </div>
-
-                <!-- Food 3 -->
-                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition">
-                    <div class="h-48 overflow-hidden bg-slate-100 relative">
-                        <img src="https://www.notaresipi.com/wp-content/uploads/2021/02/Nasi-Arab-Kambing.jpg" alt="Nasi Arab Seremban" class="w-full h-full object-cover">
-                        <span class="absolute top-3 left-3 bg-emerald-700 text-white text-[11px] font-bold px-2 py-0.5 rounded shadow">Makan Malam Popular</span>
-                    </div>
-                    <div class="p-5 space-y-2">
-                        <h3 class="font-bold text-lg text-slate-900">Nasi Arab Mandy & Kabsah</h3>
-                        <p class="text-xs text-slate-600 leading-relaxed">
-                            Pilihan makan malam kegemaran keluarga Melayu di Seremban dengan hidangan lamb shank empuk, ayam panggang, dan sup rempah wangi.
-                        </p>
-                        <p class="text-xs font-semibold text-emerald-700">Port Rekomen: Nasi Arab Damsyik / Wadi Ar-Raudhah</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Charts Grid Section: Analisis Minat & Aliran Pelancong -->
+        <!-- Charts Grid Section 1 -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- Carta Pilihan Makanan -->
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+            <!-- Trend Pertumbuhan Line Chart -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-base font-bold text-slate-900">Pilihan Utama Kategori Makanan Halal</h2>
-                    <span class="text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full font-medium">Berdasarkan Undian Pengunjung</span>
+                    <h2 class="text-base font-bold text-gray-900">Trend Pertumbuhan Populasi Keseluruhan (1970–2026)</h2>
+                    <span class="text-xs bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full font-medium">Dalam Ribu Jiwa</span>
                 </div>
-                <div class="relative h-72">
-                    <canvas id="foodChoiceChart"></canvas>
+                <div class="relative h-80">
+                    <canvas id="trendChart"></canvas>
                 </div>
             </div>
 
-            <!-- Carta Waktu Puncak Pengunjung -->
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+            <!-- Populasi Mengikut Etnik Bar Chart -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-base font-bold text-slate-900">Aliran Kunjungan ke Port Makan & Tarikan</h2>
-                    <span class="text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded-full font-medium">Waktu Hujung Minggu</span>
+                    <h2 class="text-base font-bold text-gray-900">Perbandingan Populasi Mengikut Etnik (2026)</h2>
+                    <span class="text-xs bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full font-medium">Dalam Ribu Jiwa</span>
                 </div>
-                <div class="relative h-72">
-                    <canvas id="peakHourChart"></canvas>
+                <div class="relative h-80">
+                    <canvas id="etnikChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Grid Section 2 -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Taburan Kumpulan Umur Bar Chart -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-base font-bold text-gray-900">Taburan Penduduk Mengikut Kumpulan Umur (2026)</h2>
+                    <span class="text-xs bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full font-medium">Julat 5 Tahun</span>
+                </div>
+                <div class="relative h-80">
+                    <canvas id="umurChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Perbandingan Jantina Line Chart -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-base font-bold text-gray-900">Perbandingan Trend Jantina (Lelaki vs Perempuan)</h2>
+                    <span class="text-xs bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full font-medium">1970 – 2026</span>
+                </div>
+                <div class="relative h-80">
+                    <canvas id="jantinaChart"></canvas>
                 </div>
             </div>
         </div>
@@ -299,64 +152,90 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-slate-200 mt-16 py-8 text-center text-xs text-slate-500">
-        <p>&copy; 2026 Portal Rekreasi & Makanan Halal Seremban. Direka khusus untuk rujukan pelancongan mesra Muslim.</p>
+    <footer class="bg-white border-t border-gray-200 mt-16 py-8 text-center text-xs text-gray-500">
+        <p>&copy; 2026 Dashboard Demografi Malaysia. Dijana khas berdasarkan data rasmi populasi.</p>
     </footer>
 
-    <!-- JavaScript Charts -->
+    <!-- JavaScript for Chart Rendering -->
     <script>
-        // 1. Carta Pilihan Makanan Halal
-        const ctxFood = document.getElementById('foodChoiceChart').getContext('2d');
-        new Chart(ctxFood, {
-            type: 'doughnut',
+        // 1. Trend Pertumbuhan Chart
+        const ctxTrend = document.getElementById('trendChart').getContext('2d');
+        new Chart(ctxTrend, {
+            type: 'line',
             data: {
-                labels: ['Masak Lemak Salai (Nogori)', 'Cendol & Minum Petang', 'Nasi Arab & Timur Tengah', 'Masakan Kampung & Ulam', 'Seafood & Western Halal'],
+                labels: ['1970', '1975', '1980', '1985', '1990', '1995', '2000', '2005', '2010', '2015', '2020', '2021', '2022', '2023', '2024', '2025', '2026'],
                 datasets: [{
-                    data: [42, 22, 16, 12, 8],
-                    backgroundColor: ['#059669', '#f59e0b', '#0284c7', '#10b981', '#6366f1'],
-                    borderWidth: 2,
-                    borderColor: '#ffffff'
+                    label: 'Jumlah Penduduk (Ribu)',
+                    data: [10881.8, 12300.3, 13879.3, 15882.7, 18102.4, 20681.8, 23494.9, 26045.5, 28588.6, 31186.1, 32447.4, 32576.3, 32698.1, 33401.8, 34052.1, 34220.5, 34389.4],
+                    borderColor: '#6366f1',
+                    backgroundColor: 'rgba(99, 102, 241, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 3
                 }]
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: { boxWidth: 12, font: { size: 11 } }
-                    }
-                }
-            }
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
         });
 
-        // 2. Carta Waktu Kunjungan (Traffic Flow)
-        const ctxPeak = document.getElementById('peakHourChart').getContext('2d');
-        new Chart(ctxPeak, {
+        // 2. Etnik Chart
+        const ctxEtnik = document.getElementById('etnikChart').getContext('2d');
+        new Chart(ctxEtnik, {
             type: 'bar',
             data: {
-                labels: ['8 AM (Sarapan)', '11 AM (Muzium)', '1 PM (Makan Salai)', '4 PM (Cendol/Tasik)', '7 PM (Solat/Rehat)', '8:30 PM (Nasi Arab/Malam)'],
+                labels: ['Bumiputera Melayu', 'Cina', 'Bumiputera Lain', 'Bukan Warganegara', 'India', 'Warganegara Lain'],
                 datasets: [{
-                    label: 'Indeks Kepadatan Pengunjung',
-                    data: [45, 60, 95, 80, 50, 88],
-                    backgroundColor: '#059669',
+                    label: 'Populasi (Ribu)',
+                    data: [18126.1, 6829.2, 3816.9, 3373.6, 2006.5, 237.1],
+                    backgroundColor: ['#4f46e5', '#3b82f6', '#06b6d4', '#10b981', '#f59e0b', '#ef4444'],
                     borderRadius: 8
                 }]
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { display: false }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 100,
-                        ticks: { stepSize: 20 }
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+        });
+
+        // 3. Umur Chart
+        const ctxUmur = document.getElementById('umurChart').getContext('2d');
+        new Chart(ctxUmur, {
+            type: 'bar',
+            data: {
+                labels: ['0-4', '5-9', '10-14', '15-19', '20-24', '25-29', '30-34', '35-39', '40-44', '45-49', '50-54', '55-59', '60-64', '65-69', '70-74', '75-79', '80-84', '85+'],
+                datasets: [{
+                    label: 'Populasi (Ribu)',
+                    data: [2165.4, 2483.7, 2641.6, 2700.8, 3119.3, 3131.7, 2871.3, 2825.6, 2707.3, 2183.4, 1787.6, 1527.1, 1368.1, 1139.9, 815.2, 514.7, 249.1, 157.4],
+                    backgroundColor: '#10b981',
+                    borderRadius: 4
+                }]
+            },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+        });
+
+        // 4. Jantina Chart
+        const ctxJantina = document.getElementById('jantinaChart').getContext('2d');
+        new Chart(ctxJantina, {
+            type: 'line',
+            data: {
+                labels: ['1970', '1975', '1980', '1985', '1990', '1995', '2000', '2005', '2010', '2015', '2020', '2026'],
+                datasets: [
+                    {
+                        label: 'Lelaki',
+                        data: [5517.0, 6213.1, 6992.0, 8033.2, 9185.3, 10521.5, 11965.6, 13353.3, 14730.5, 16112.1, 16966.2, 18025.2],
+                        borderColor: '#3b82f6',
+                        backgroundColor: '#3b82f6',
+                        borderWidth: 2,
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Perempuan',
+                        data: [5364.7, 6087.2, 6887.2, 7849.6, 8917.1, 10160.3, 11529.3, 12692.3, 13858.1, 15074.0, 15481.2, 16364.2],
+                        borderColor: '#ec4899',
+                        backgroundColor: '#ec4899',
+                        borderWidth: 2,
+                        tension: 0.3
                     }
-                }
-            }
+                ]
+            },
+            options: { responsive: true, maintainAspectRatio: false }
         });
     </script>
 </body>
