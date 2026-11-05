@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2C4A3E">
+  <title>Tempahan & Hubungi | GeoHome Kedah</title>
+  <meta name="description" content="Hubungi GeoHome untuk menyemak kekosongan dan membuat pertanyaan tempahan.">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="container nav-container">
+    <a href="index.html" class="logo" aria-label="GeoHome - Halaman Utama">
+      <img src="geohome-logo.png" alt="GeoHome">
+    </a>
+    <nav class="nav-links" aria-label="Navigasi utama">
+      <a href="index.html" data-page="index.html">Utama</a>
+      <a href="rooms.html" data-page="rooms.html">Bilik &amp; Kadar</a>
+      <a href="nature.html" data-page="nature.html">Alam &amp; Aktiviti</a>
+      <a href="about.html" data-page="about.html">Tentang Kami</a>
+      <a href="teaser.html" data-page="teaser.html">Video Teaser</a>
+      <a href="booking.html" class="btn-nav" data-page="booking.html">Tempahan</a>
+    </nav>
+    <button class="hamburger" type="button" aria-label="Buka menu navigasi" aria-expanded="false">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+</header>
+
+<main>
+
+<section class="inner-hero booking-hero"><div class="container"><span class="eyebrow">TEMPAHAN GEOHOME</span><h1>Rancang masa rehat<br><em>anda bermula di sini.</em></h1><p>Isi maklumat penginapan dan hantarkan pertanyaan terus kepada host melalui WhatsApp.</p><div class="breadcrumb"><a href="index.html">Utama</a><i class="fas fa-chevron-right"></i><span>Tempahan</span></div></div></section>
+<section class="section booking-section"><div class="container booking-layout">
+  <div class="booking-sidebar"><span class="eyebrow">HUBUNGI HOST</span><h2>Kami sedia membantu pertanyaan anda.</h2><p>Gunakan borang untuk berkongsi pilihan bilik dan tarikh. Host akan membantu mengesahkan kekosongan dan maklumat tempahan.</p><div class="contact-detail"><i class="fas fa-location-dot"></i><div><strong>Lokasi</strong><span>Jalan Bendang Indah, 06500 Langgar, Kedah</span></div></div><div class="contact-detail"><i class="fas fa-phone"></i><div><strong>Telefon / WhatsApp</strong><span>+60 12-345 6789</span></div></div><div class="contact-detail"><i class="fas fa-envelope"></i><div><strong>E-mel</strong><span>tempahan@geohome.my</span></div></div><div class="booking-assurance"><i class="fas fa-circle-info"></i><span>Permintaan melalui borang ini ialah pertanyaan awal. Tempahan hanya disahkan selepas semakan bersama host.</span></div></div>
+  <div class="booking-form-card"><div class="form-card-heading"><span class="eyebrow">BORANG PERTANYAAN</span><h2>Maklumat penginapan</h2><p>Lengkapkan butiran di bawah untuk meneruskan ke WhatsApp.</p></div>
+    <form id="booking-form">
+      <div class="form-group"><label for="guest-name">Nama penuh</label><input id="guest-name" name="guestName" type="text" required placeholder="Masukkan nama anda"></div>
+      <div class="form-group"><label for="guest-room">Pilihan bilik</label><select id="guest-room" name="room" required><option value="">Pilih bilik penginapan</option><option value="Suite Utama Bendang — RM180/malam">Suite Utama Bendang (RM180)</option><option value="Suite Panorama Gunung — RM160/malam">Suite Panorama Gunung (RM160)</option><option value="Bilik Deluxe Kayu — RM140/malam">Bilik Deluxe Kayu (RM140)</option><option value="Bilik Deluxe Tenang — RM140/malam">Bilik Deluxe Tenang (RM140)</option><option value="Bilik Standard Desa — RM120/malam">Bilik Standard Desa (RM120)</option></select></div>
+      <div class="form-row"><div class="form-group"><label for="checkin">Tarikh daftar masuk</label><input id="checkin" name="checkin" type="date" required></div><div class="form-group"><label for="checkout">Tarikh daftar keluar</label><input id="checkout" name="checkout" type="date" required></div></div>
+      <div class="form-row"><div class="form-group"><label for="guest-count">Bilangan tetamu</label><select id="guest-count" name="guests" required><option value="">Pilih</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6+</option></select></div><div class="form-group"><label for="guest-phone">Nombor telefon</label><input id="guest-phone" name="phone" type="tel" placeholder="Contoh: 0123456789" required></div></div>
+      <div class="form-group"><label for="guest-note">Catatan tambahan <span class="optional-label">(pilihan)</span></label><textarea id="guest-note" name="note" rows="4" placeholder="Nyatakan pertanyaan atau permintaan khas anda..."></textarea></div>
+      <button type="submit" class="btn btn-primary btn-block">Hantar melalui WhatsApp <i class="fab fa-whatsapp"></i></button>
+      <p class="form-privacy-note">Maklumat ini akan dimasukkan ke dalam mesej WhatsApp untuk semakan host.</p>
+    </form>
+  </div>
+</div></section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-layout">
+    <div class="footer-brand">
+      <a href="index.html" class="logo footer-logo"><img src="geohome-logo.png" alt="GeoHome"></a>
+      <p>Jiwa di Sawah, Tenang di GeoHome.</p>
+      <p class="footer-muted">Penginapan moden yang meraikan ketenangan alam desa.</p>
+    </div>
+    <div class="footer-links">
+      <h3>Terokai GeoHome</h3>
+      <a href="rooms.html">Bilik &amp; Kadar</a>
+      <a href="nature.html">Alam &amp; Aktiviti</a>
+      <a href="about.html">Tentang Kami</a>
+      <a href="teaser.html">Video Teaser</a>
+    </div>
+    <div class="footer-links">
+      <h3>Hubungi</h3>
+      <a href="booking.html">Tempahan &amp; Pertanyaan</a>
+      <a href="https://wa.me/60123456789" target="_blank" rel="noopener">WhatsApp GeoHome</a>
+      <span>Jalan Bendang Indah, 06500 Langgar, Kedah</span>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>&copy; 2026 GeoHome Kedah. Hak Cipta Terpelihara.</span>
+    <a href="index.html">Kembali ke Utama ↑</a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
