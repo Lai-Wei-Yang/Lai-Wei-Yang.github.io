@@ -232,6 +232,90 @@
       border-radius: 4px;
       font-size: 0.85em;
     }
+
+
+    /* Lab 7 YouTube video modal */
+    .video-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(5px);
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+    }
+
+    .video-modal.active {
+      display: flex;
+    }
+
+    .video-modal-content {
+      position: relative;
+      width: min(720px, 100%);
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1rem;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .video-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .video-modal-header h2 {
+      font-size: 1.1rem;
+      color: var(--text-main);
+    }
+
+    .video-modal-close {
+      border: 0;
+      background: #f1f5f9;
+      color: #0f172a;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1.4rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .video-modal-close:hover {
+      background: #e2e8f0;
+    }
+
+    .video-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #0f172a;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .video-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    @media (max-width: 480px) {
+      .video-modal-content {
+        padding: 0.75rem;
+      }
+
+      .video-modal-header h2 {
+        font-size: 0.95rem;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -407,14 +491,83 @@
           </div>
         </div>
         <div class="card-links">
-          <a href="lab7/README.md" class="btn btn-primary">Watch Lab 7</a>
+          <button type="button" class="btn btn-primary" onclick="openLab7Video()">Watch Lab 7</button>
         </div>
       </article>
     </main>
+
+
+
+    <!-- Lab 7 YouTube Video Modal -->
+    <div id="lab7VideoModal" class="video-modal"
+         role="dialog" aria-modal="true" aria-labelledby="lab7VideoTitle"
+         onclick="closeLab7VideoOnBackdrop(event)">
+      <div class="video-modal-content">
+        <div class="video-modal-header">
+          <h2 id="lab7VideoTitle">Lab 7 – Video Demonstration</h2>
+          <button type="button" class="video-modal-close"
+                  aria-label="Close video" onclick="closeLab7Video()">&times;</button>
+        </div>
+        <div class="video-frame">
+          <iframe id="lab7YouTubeFrame"
+                  src=""
+                  title="Lab 7 YouTube video"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
 
     <footer>
       <p>© Profil Projek Web. Ditempatkan bersama folder <code>lab1/</code> hingga <code>lab7/</code>.</p>
     </footer>
   </div>
+
+  <script>
+    // Replace this value with your YouTube video ID.
+    // Example: for https://www.youtube.com/watch?v=AbCdEf12345
+    // the video ID is AbCdEf12345.
+    const LAB7_YOUTUBE_VIDEO_ID = "ZrOkcXryLwA";
+
+    function openLab7Video() {
+      const modal = document.getElementById("lab7VideoModal");
+      const frame = document.getElementById("lab7YouTubeFrame");
+
+      if (LAB7_YOUTUBE_VIDEO_ID === "YOUR_VIDEO_ID") {
+        alert("Please add your YouTube video ID in the LAB7_YOUTUBE_VIDEO_ID variable.");
+        return;
+      }
+
+      frame.src = "https://www.youtube-nocookie.com/embed/" +
+                  encodeURIComponent(LAB7_YOUTUBE_VIDEO_ID) +
+                  "?autoplay=1&rel=0";
+
+      modal.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeLab7Video() {
+      const modal = document.getElementById("lab7VideoModal");
+      const frame = document.getElementById("lab7YouTubeFrame");
+
+      modal.classList.remove("active");
+      frame.src = "";
+      document.body.style.overflow = "";
+    }
+
+    function closeLab7VideoOnBackdrop(event) {
+      if (event.target.id === "lab7VideoModal") {
+        closeLab7Video();
+      }
+    }
+
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Escape") {
+        closeLab7Video();
+      }
+    });
+  </script>
+
 </body>
 </html>
