@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="ms" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Hero: Misi Selamatkan Data - Enhanced</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Fredoka & Fira Code -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Three.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background-color: #05050f;
+            overflow: hidden;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        .neon-glow {
+            text-shadow: 0 0 12px rgba(6, 182, 212, 0.8), 0 0 24px rgba(6, 182, 212, 0.5);
+        }
+        .neon-rose {
+            text-shadow: 0 0 12px rgba(244, 63, 94, 0.8), 0 0 24px rgba(244, 63, 94, 0.5);
+        }
+        @keyframes pulse-fast {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(0.96); }
+        }
+        .pulse-warning {
+            animation: pulse-fast 0.5s infinite;
+        }
+        /* Damage flash vignette */
+        #damage-vignette {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            box-shadow: inset 0 0 100px rgba(239, 68, 68, 0);
+            transition: box-shadow 0.2s ease;
+            z-index: 25;
+        }
+        .flash-red {
+            box-shadow: inset 0 0 120px rgba(239, 68, 68, 0.8) !important;
+        }
+    </style>
+</head>
+<body class="h-full flex flex-col justify-between text-slate-100 selection:bg-cyan-500 selection:text-white">
+
+    <!-- Damage Screen Flash Vignette -->
+    <div id="damage-vignette"></div>
+
+    <!-- Header / HUD Navbar -->
+    <header id="hud-header" class="hidden absolute top-0 left-0 w-full bg-slate-950/85 backdrop-blur-md border-b-2 border-cyan-500/40 px-4 sm:px-6 py-3 flex justify-between items-center shadow-lg z-30 pointer-events-none">
+        <div class="flex items-center space-x-3">
+            <div class="bg-cyan-500 text-slate-950 w-10 h-10 rounded-xl flex items-center justify-center font-bold text-xl shadow-[0_0_15px_rgba(6,182,212,0.8)] border border-cyan-300">
+                🛡️
+            </div>
+            <div>
+                <h1 class="font-bold text-sm sm:text-lg text-cyan-400 tracking-wider">CYBER HERO <span id="hud-wave-label" class="text-xs bg-cyan-950 px-2 py-0.5 rounded border border-cyan-500/50 text-cyan-300 ml-1">Gelombang 1</span></h1>
+                <p class="text-[10px] sm:text-xs text-slate-400">Misi Selamatkan Data Kripto</p>
+            </div>
+        </div>
+        
+        <div class="flex items-center space-x-2 sm:space-x-4">
+            <!-- Nyawa -->
+            <div class="flex items-center space-x-1.5 bg-slate-900/90 border border-rose-500/50 px-2.5 py-1.5 rounded-xl shadow-inner">
+                <span class="text-xs sm:text-sm">❤️</span>
+                <span id="hud-lives" class="font-bold text-rose-400 text-xs sm:text-base code-font">3</span>
+            </div>
+            <!-- Peluru / Ammo -->
+            <div class="flex items-center space-x-1.5 bg-slate-900/90 border border-amber-500/50 px-2.5 py-1.5 rounded-xl shadow-inner">
+                <span class="text-xs sm:text-sm">🔋</span>
+                <span id="hud-ammo" class="font-bold text-amber-400 text-xs sm:text-base code-font">12/12</span>
+            </div>
+            <!-- Markah / Target -->
+            <div class="flex items-center space-x-1.5 bg-slate-900/90 border border-cyan-500/50 px-2.5 py-1.5 rounded-xl shadow-inner">
+                <span class="text-xs sm:text-sm">💾</span>
+                <span id="hud-score" class="font-bold text-cyan-400 text-xs sm:text-base code-font">0 / 15</span>
+            </div>
+            <!-- Combo Multiplier -->
+            <div class="hidden sm:flex items-center space-x-1.5 bg-slate-900/90 border border-purple-500/50 px-2.5 py-1.5 rounded-xl shadow-inner">
+                <span class="text-xs sm:text-sm">⚡</span>
+                <span id="hud-combo" class="font-bold text-purple-400 text-sm code-font">x1</span>
+            </div>
+            <!-- Pemasa -->
+            <div class="flex items-center space-x-1.5 bg-slate-900/90 border border-blue-500/50 px-2.5 py-1.5 rounded-xl shadow-inner">
+                <span class="text-xs sm:text-sm">⏱️</span>
+                <span id="hud-timer" class="font-bold text-blue-400 text-xs sm:text-base code-font">60s</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Game Viewport & UI Screens -->
+    <main class="flex-grow relative w-full h-full flex items-center justify-center overflow-hidden">
+        
+        <!-- Three.js Canvas Container -->
+        <div id="canvas-container" class="absolute inset-0 w-full h-full cursor-crosshair"></div>
+
+        <!-- Crosshair & Reload Warning di Tengah Skrin -->
+        <div id="crosshair" class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none hidden z-20">
+            <div class="relative flex items-center justify-center">
+                <div class="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_#06b6d4]"></div>
+                <div class="absolute w-6 h-0.5 bg-cyan-400/80"></div>
+                <div class="absolute w-0.5 h-6 bg-cyan-400/80"></div>
+            </div>
+            <div id="reload-indicator" class="mt-8 text-amber-300 font-bold text-xs bg-slate-950/80 px-3 py-1 rounded-full border border-amber-500/50 opacity-0 transition-opacity">
+                TEKAN <code class="text-white bg-slate-900 px-1 rounded">R</code> UNTUK ISI SEMULA PELURU!
+            </div>
+            <div id="powerup-toast" class="mt-2 text-cyan-300 font-bold text-xs bg-cyan-950/90 px-4 py-1.5 rounded-full border border-cyan-400 shadow-[0_0_15px_rgba(6,182,212,0.6)] opacity-0 transition-all transform translate-y-2">
+                ⚡ KUASA DIAKTIFKAN!
+            </div>
+        </div>
+
+        <!-- Screen 1: Laman Utama / Intro -->
+        <div id="screen-welcome" class="max-w-xl w-full bg-slate-900/95 backdrop-blur-xl border-2 border-cyan-500/50 p-6 sm:p-8 rounded-3xl shadow-[0_0_40px_rgba(6,182,212,0.3)] text-center relative z-40 mx-4">
+            <div class="absolute -top-12 left-1/2 -translate-x-1/2 bg-slate-950 border-2 border-cyan-500 p-4 rounded-2xl shadow-[0_0_20px_rgba(6,182,212,0.5)] text-3xl">
+                🤖🚀
+            </div>
+            <div class="pt-4">
+                <h2 class="text-2xl sm:text-3xl font-bold text-cyan-400 mb-2 neon-glow">CYBER HERO: ENHANCED</h2>
+                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed mb-4">
+                    Pelayan universiti diserang gelombang <span class="text-rose-400 font-bold">Virus Pintar & Peluru Musuh</span>! Tembak virus, elak peluru mereka, kutip kuasa khas, dan isi semula peluru dengan bijak.
+                </p>
+                <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 text-left mb-6 text-xs sm:text-sm text-slate-300 space-y-2">
+                    <div class="flex items-center"><span class="mr-2 text-cyan-400">⌨️</span> **Gerak:** <code class="text-cyan-300 bg-slate-900 px-1.5 py-0.5 rounded border border-slate-700">W, A, S, D</code> atau Panah</div>
+                    <div class="flex items-center"><span class="mr-2 text-cyan-400">🖱️</span> **Tembak:** Klik Kiri Tetikus | **Isi Semula:** Kekunci <code class="text-cyan-300 bg-slate-900 px-1.5 py-0.5 rounded border border-slate-700">R</code></div>
+                    <div class="flex items-center"><span class="mr-2 text-cyan-400">⚡</span> **Power-ups:** Kutip Nod Istimewa (Perisai 🛡️, Masa ⏱️, Peluru Laju ⚡)</div>
+                </div>
+                <button onclick="startGame()" class="w-full sm:w-auto px-10 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold text-base rounded-2xl shadow-[0_0_20px_rgba(6,182,212,0.6)] transition transform active:scale-95 cursor-pointer border border-cyan-300 flex items-center justify-center mx-auto space-x-2">
+                    <i class="fa-solid fa-play"></i>
+                    <span>MULA PERTEMPURAN SIBER</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Screen 2: Skrin Kejayaan / Tamat (Victory / Game Over) -->
+        <div id="screen-gameover" class="max-w-xl w-full bg-slate-900/95 backdrop-blur-xl border-2 border-slate-700 p-8 rounded-3xl shadow-2xl hidden text-center relative z-40 mx-4">
+            <div id="go-icon" class="text-6xl mb-3">🏆</div>
+            <h2 id="go-title" class="text-2xl sm:text-3xl font-bold text-cyan-400 mb-2">Misi Selesai!</h2>
+            <p id="go-desc" class="text-slate-300 text-xs sm:text-sm mb-6">
+                Tahniah! Anda telah menumpaskan semua gelombang ancaman siber.
+            </p>
+            <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 mb-6 max-w-sm mx-auto grid grid-cols-2 gap-4 text-center">
+                <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
+                    <span class="block text-xs text-slate-400 font-semibold mb-1">Skor Akhir</span>
+                    <span id="go-final-score" class="text-2xl font-bold text-cyan-400 code-font">0</span>
+                </div>
+                <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
+                    <span class="block text-xs text-slate-400 font-semibold mb-1">Gelombang Dicapai</span>
+                    <span id="go-final-wave" class="text-xl font-bold text-emerald-400 code-font">1</span>
+                </div>
+            </div>
+            <button onclick="restartGame()" class="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold rounded-2xl shadow-[0_0_15px_rgba(6,182,212,0.5)] transition transform active:scale-95 cursor-pointer flex items-center justify-center mx-auto space-x-2">
+                <i class="fa-solid fa-rotate-right"></i>
+                <span>MAIN SEMULA</span>
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="absolute bottom-0 left-0 w-full bg-slate-950/90 border-t border-slate-800 py-2 text-center text-[10px] text-slate-500 z-30 pointer-events-none">
+        Cyber Hero: Enhanced 3D FPS • Web Audio & Three.js Simulation
+    </footer>
+
+    <!-- JavaScript Game Logic & Three.js Enhanced Simulation -->
+    <script>
+        // Web Audio API Sound Synthesizer
+        let audioCtx = null;
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playSound(type) {
+            try {
+                initAudio();
+                if (!audioCtx) return;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                const now = audioCtx.currentTime;
+
+                if (type === 'shoot') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(700, now);
+                    osc.frequency.exponentialRampToValueAtTime(120, now + 0.12);
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.12);
+                    osc.start(now);
+                    osc.stop(now + 0.12);
+                } else if (type === 'empty') {
+                    osc.type = 'square';
+                    osc.frequency.setValueAtTime(200, now);
+                    osc.frequency.setValueAtTime(100, now + 0.05);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.1);
+                    osc.start(now);
+                    osc.stop(now + 0.1);
+                } else if (type === 'reload') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(300, now);
+                    osc.frequency.linearRampToValueAtTime(500, now + 0.2);
+                    gain.gain.setValueAtTime(0.15, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
+                    osc.start(now);
+                    osc.stop(now + 0.25);
+                } else if (type === 'hit') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(400, now);
+                    osc.frequency.linearRampToValueAtTime(800, now + 0.18);
+                    gain.gain.setValueAtTime(0.2, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.18);
+                    osc.start(now);
+                    osc.stop(now + 0.18);
+                } else if (type === 'hurt') {
+                    osc.type = 'square';
+                    osc.frequency.setValueAtTime(140, now);
+                    osc.frequency.linearRampToValueAtTime(40, now + 0.25);
+                    gain.gain.setValueAtTime(0.3, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.25);
+                    osc.start(now);
+                    osc.stop(now + 0.25);
+                } else if (type === 'powerup') {
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(440, now);
+                    osc.frequency.exponentialRampToValueAtTime(880, now + 0.3);
+                    gain.gain.setValueAtTime(0.25, now);
+                    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+                    osc.start(now);
+                    osc.stop(now + 0.3);
+                }
+            } catch (e) {
+                console.log("Audio error:", e);
+            }
+        }
+
+        // Game State Variables
+        let scene, camera, renderer;
+        let gameRunning = false;
+        let score = 0;
+        let lives = 3;
+        let wave = 1;
+        let targetGoal = 15;
+        let timeLeft = 60;
+        let timerInterval = null;
+
+        // Weapon & Ammo system
+        let maxAmmo = 12;
+        let ammo = 12;
+        let isReloading = false;
+        let combo = 1;
+        let comboTimer = null;
+        let hasShield = false;
+
+        // Player movement state
+        let moveForward = false;
+        let moveBackward = false;
+        let moveLeft = false;
+        let moveRight = false;
+        let velocity = new THREE.Vector3();
+        let direction = new THREE.Vector3();
+
+        // Mouse look angles
+        let pitch = 0;
+        let yaw = 0;
+
+        // Game Entities
+        let targets = [];
+        let projectiles = []; // Enemy bullets
+        let particles = [];   // Explosion particle system
+        let powerUps = [];    // Collectible power-ups
+
+        function startGame() {
+            document.getElementById('screen-welcome').classList.add('hidden');
+            document.getElementById('hud-header').classList.remove('hidden');
+            document.getElementById('hud-header').classList.add('flex');
+            document.getElementById('crosshair').classList.remove('hidden');
+
+            const container = document.getElementById('canvas-container');
+            container.requestPointerLock = container.requestPointerLock || container.mozRequestPointerLock;
+            container.requestPointerLock();
+
+            score = 0;
+            lives = 3;
+            wave = 1;
+            targetGoal = 15;
+            timeLeft = 60;
+            ammo = maxAmmo;
+            combo = 1;
+            hasShield = false;
+
+            updateHUD();
+            initThreeJS();
+            startTimer();
+
+            gameRunning = true;
+            animate();
+        }
+
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (!gameRunning) return;
+                timeLeft--;
+                document.getElementById('hud-timer').innerText = timeLeft + 's';
+                if (timeLeft <= 0) {
+                    endGame(score >= targetGoal);
+                }
+            }, 1000);
+        }
+
+        function updateHUD() {
+            document.getElementById('hud-score').innerText = `${score} / ${targetGoal}`;
+            document.getElementById('hud-lives').innerText = lives + (hasShield ? ' 🛡️' : '');
+            document.getElementById('hud-ammo').innerText = `${ammo}/${maxAmmo}`;
+            document.getElementById('hud-combo').innerText = `x${combo}`;
+            document.getElementById('hud-wave-label').innerText = `Gelombang ${wave}`;
+        }
+
+        function showPowerUpToast(text) {
+            const toast = document.getElementById('powerup-toast');
+            toast.innerText = text;
+            toast.style.opacity = '1';
+            toast.style.transform = 'translateY(0)';
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(10px)';
+            }, 2000);
+        }
+
+        function initThreeJS() {
+            const container = document.getElementById('canvas-container');
+            container.innerHTML = '';
+
+            // Scene setup
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x050512);
+            scene.fog = new THREE.FogExp2(0x050512, 0.03);
+
+            // Camera setup (First Person)
+            camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.set(0, 1.6, 5);
+
+            // Renderer setup
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            container.appendChild(renderer.domElement);
+
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+            scene.add(ambientLight);
+
+            const pointLight = new THREE.PointLight(0x00ffff, 1.2, 60);
+            pointLight.position.set(0, 6, 0);
+            scene.add(pointLight);
+
+            createCyberRoom();
+            spawnWaveEntities();
+
+            // Event Listeners
+            window.addEventListener('resize', onWindowResize);
+            document.addEventListener('keydown', onKeyDown);
+            document.addEventListener('keyup', onKeyUp);
+            document.addEventListener('mousemove', onMouseMove);
+            document.addEventListener('mousedown', onMouseDown);
+        }
+
+        function createCyberRoom() {
+            // Floor Grid
+            const gridHelper = new THREE.GridHelper(70, 70, 0x06b6d4, 0x1e1b4b);
+            gridHelper.position.y = 0;
+            scene.add(gridHelper);
+
+            // Ceiling
+            const ceilingGeo = new THREE.PlaneGeometry(70, 70);
+            const ceilingMat = new THREE.MeshBasicMaterial({ color: 0x030308, side: THREE.DoubleSide });
+            const ceiling = new THREE.Mesh(ceilingGeo, ceilingMat);
+            ceiling.rotation.x = Math.PI / 2;
+            ceiling.position.y = 12;
+            scene.add(ceiling);
+
+            // Perimeter Walls
+            const wallMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.2, metalness: 0.8 });
+            
+            const wallN = new THREE.Mesh(new THREE.PlaneGeometry(70, 12), wallMat);
+            wallN.position.set(0, 6, -35);
+            scene.add(wallN);
+
+            const wallS = new THREE.Mesh(new THREE.PlaneGeometry(70, 12), wallMat);
+            wallS.position.set(0, 6, 35);
+            wallS.rotation.y = Math.PI;
+            scene.add(wallS);
+
+            const wallE = new THREE.Mesh(new THREE.PlaneGeometry(70, 12), wallMat);
+            wallE.position.set(35, 6, 0);
+            wallE.rotation.y = -Math.PI / 2;
+            scene.add(wallE);
+
+            const wallW = new THREE.Mesh(new THREE.PlaneGeometry(70, 12), wallMat);
+            wallW.position.set(-35, 6, 0);
+            wallW.rotation.y = Math.PI / 2;
+            scene.add(wallW);
+
+            // Server Racks (Pillars)
+            for (let i = -24; i <= 24; i += 12) {
+                if (i === 0) continue;
+                createServerRack(i, -32);
+                createServerRack(i, 32);
+            }
+        }
+
+        function createServerRack(x, z) {
+            const rackGeo = new THREE.BoxGeometry(4, 10, 2);
+            const rackMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, metalness: 0.9, roughness: 0.1 });
+            const rack = new THREE.Mesh(rackGeo, rackMat);
+            rack.position.set(x, 5, z);
+            scene.add(rack);
+
+            const lightGeo = new THREE.BoxGeometry(3.6, 0.2, 2.1);
+            const lightMat = new THREE.MeshBasicMaterial({ color: 0x00ffff });
+            const lightStrip = new THREE.Mesh(lightGeo, lightMat);
+            lightStrip.position.set(x, 9, z);
+            scene.add(lightStrip);
+        }
+
+        function spawnWaveEntities() {
+            // Clear old targets & powerups
+            targets.forEach(t => scene.remove(t.mesh));
+            targets = [];
+            powerUps.forEach(p => scene.remove(p.mesh));
+            powerUps = [];
+
+            // Spawn count based on wave
+            const virusCount = 8 + wave * 3;
+            for (let i = 0; i < virusCount; i++) {
+                const isVirus = Math.random() > 0.25; // 75% virus, 25% green data
+                const isMoving = isVirus && (Math.random() > 0.4); // Some viruses chase player
+                const canShoot = isVirus && wave >= 2 && (Math.random() > 0.5); // Wave 2+ viruses shoot back
+
+                const geo = isVirus ? new THREE.IcosahedronGeometry(1.3) : new THREE.BoxGeometry(1.5, 1.5, 1.5);
+                const mat = new THREE.MeshStandardMaterial({
+                    color: isVirus ? 0xef4444 : 0x10b981,
+                    emissive: isVirus ? 0x7f1d1d : 0x065f46,
+                    roughness: 0.2,
+                    metalness: 0.8
+                });
+
+                const mesh = new THREE.Mesh(geo, mat);
+                const posX = (Math.random() - 0.5) * 50;
+                const posZ = (Math.random() - 0.5) * 50;
+                const posY = 1.5 + Math.random() * 4;
+                mesh.position.set(posX, posY, posZ);
+                scene.add(mesh);
+
+                targets.push({
+                    mesh: mesh,
+                    isVirus: isVirus,
+                    isMoving: isMoving,
+                    canShoot: canShoot,
+                    shootCooldown: Math.random() * 3 + 2,
+                    floatSpeed: 0.02 + Math.random() * 0.03,
+                    floatOffset: Math.random() * Math.PI
+                });
+            }
+
+            // Spawn Power-ups (Shield, Time +15s, Ammo refill)
+            const powerUpTypes = ['shield', 'time', 'ammo'];
+            for (let i = 0; i < 2; i++) {
+                const pType = powerUpTypes[Math.floor(Math.random() * powerUpTypes.length)];
+                const pGeo = new THREE.OctahedronGeometry(1);
+                let pColor = 0x3b82f6;
+                if (pType === 'shield') pColor = 0x8b5cf6;
+                if (pType === 'time') pColor = 0xf59e0b;
+                if (pType === 'ammo') pColor = 0x10b981;
+
+                const pMat = new THREE.MeshStandardMaterial({ color: pColor, emissive: pColor, roughness: 0.1, metalness: 0.9 });
+                const pMesh = new THREE.Mesh(pGeo, pMat);
+                pMesh.position.set((Math.random() - 0.5) * 45, 2, (Math.random() - 0.5) * 45);
+                scene.add(pMesh);
+
+                powerUps.push({
+                    mesh: pMesh,
+                    type: pType
+                });
+            }
+        }
+
+        function createExplosion(pos, colorHex) {
+            const particleCount = 18;
+            for (let i = 0; i < particleCount; i++) {
+                const pGeo = new THREE.BoxGeometry(0.25, 0.25, 0.25);
+                const pMat = new THREE.MeshBasicMaterial({ color: colorHex });
+                const pMesh = new THREE.Mesh(pGeo, pMat);
+                pMesh.position.copy(pos);
+                scene.add(pMesh);
+
+                const velocity = new THREE.Vector3(
+                    (Math.random() - 0.5) * 0.4,
+                    (Math.random() - 0.5) * 0.4,
+                    (Math.random() - 0.5) * 0.4
+                );
+
+                particles.push({
+                    mesh: pMesh,
+                    velocity: velocity,
+                    life: 1.0
+                });
+            }
+        }
+
+        function triggerDamageFlash() {
+            const vignette = document.getElementById('damage-vignette');
+            vignette.classList.add('flash-red');
+            setTimeout(() => {
+                vignette.classList.remove('flash-red');
+            }, 300);
+        }
+
+        function onWindowResize() {
+            const container = document.getElementById('canvas-container');
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        }
+
+        function onKeyDown(e) {
+            if (!gameRunning) return;
+            if (e.key === 'w' || e.key === 'W' || e.key === 'ArrowUp') moveForward = true;
+            if (e.key === 's' || e.key === 'S' || e.key === 'ArrowDown') moveBackward = true;
+            if (e.key === 'a' || e.key === 'A' || e.key === 'ArrowLeft') moveLeft = true;
+            if (e.key === 'd' || e.key === 'D' || e.key === 'ArrowRight') moveRight = true;
+            if (e.key === 'r' || e.key === 'R') reloadWeapon();
+        }
+
+        function onKeyUp(e) {
+            if (e.key === 'w' || e.key === 'W' || e.key === 'ArrowUp') moveForward = false;
+            if (e.key === 's' || e.key === 'S' || e.key === 'ArrowDown') moveBackward = false;
+            if (e.key === 'a' || e.key === 'A' || e.key === 'ArrowLeft') moveLeft = false;
+            if (e.key === 'd' || e.key === 'D' || e.key === 'ArrowRight') moveRight = false;
+        }
+
+        function onMouseMove(e) {
+            if (document.pointerLockElement !== document.getElementById('canvas-container')) return;
+
+            const movementX = e.movementX || e.mozMovementX || 0;
+            const movementY = e.movementY || e.mozMovementY || 0;
+
+            yaw -= movementX * 0.002;
+            pitch -= movementY * 0.002;
+            pitch = Math.max(-Math.PI / 2.2, Math.min(Math.PI / 2.2, pitch));
+
+            camera.rotation.order = 'YXZ';
+            camera.rotation.y = yaw;
+            camera.rotation.x = pitch;
+        }
+
+        function onMouseDown(e) {
+            if (!gameRunning) return;
+            if (e.button === 0) {
+                shootLaser();
+            }
+        }
+
+        function reloadWeapon() {
+            if (isReloading || ammo === maxAmmo) return;
+            isReloading = true;
+            playSound('reload');
+            const ind = document.getElementById('reload-indicator');
+            ind.innerText = "MENGECAS SEMULA...";
+            ind.style.opacity = '1';
+
+            setTimeout(() => {
+                ammo = maxAmmo;
+                isReloading = false;
+                updateHUD();
+                ind.style.opacity = '0';
+            }, 1000);
+        }
+
+        function shootLaser() {
+            if (isReloading) return;
+
+            if (ammo <= 0) {
+                playSound('empty');
+                const ind = document.getElementById('reload-indicator');
+                ind.innerText = "TEKAN R UNTUK ISI SEMULA!";
+                ind.style.opacity = '1';
+                setTimeout(() => ind.style.opacity = '0', 1500);
+                return;
+            }
+
+            ammo--;
+            updateHUD();
+            playSound('shoot');
+
+            const raycaster = new THREE.Raycaster();
+            raycaster.setFromCamera(new THREE.Vector2(0, 0), camera);
+
+            const meshList = targets.map(t => t.mesh);
+            const intersects = raycaster.intersectObjects(meshList);
+
+            if (intersects.length > 0) {
+                const hitMesh = intersects[0].object;
+                const targetIndex = targets.findIndex(t => t.mesh === hitMesh);
+
+                if (targetIndex !== -1) {
+                    const target = targets[targetIndex];
+                    if (target.isVirus) {
+                        playSound('hit');
+                        createExplosion(target.mesh.position, 0xef4444);
+                        score += combo;
+
+                        // Combo multiplier growth
+                        combo = Math.min(5, combo + 1);
+                        if (comboTimer) clearTimeout(comboTimer);
+                        comboTimer = setTimeout(() => { combo = 1; updateHUD(); }, 4000);
+
+                        scene.remove(target.mesh);
+                        targets.splice(targetIndex, 1);
+
+                        updateHUD();
+
+                        // Check Wave advancement
+                        if (score >= targetGoal) {
+                            wave++;
+                            targetGoal += 15;
+                            timeLeft += 20;
+                            showPowerUpToast(`🎉 GELOMBANG ${wave} BERMULA!`);
+                            spawnWaveEntities();
+                        } else if (targets.length < 5) {
+                            spawnWaveEntities();
+                        }
+                    } else {
+                        // Hit green data node by mistake!
+                        playSound('hurt');
+                        triggerDamageFlash();
+                        combo = 1;
+                        if (hasShield) {
+                            hasShield = false;
+                            showPowerUpToast("🛡️ Perisai menyerap kerosakan!");
+                        } else {
+                            lives--;
+                        }
+                        updateHUD();
+                        if (lives <= 0) {
+                            endGame(false);
+                        }
+                    }
+                }
+            }
+        }
+
+        let clock = new THREE.Clock();
+
+        function animate() {
+            if (!gameRunning) return;
+            requestAnimationFrame(animate);
+
+            const delta = clock.getDelta();
+
+            // Player WASD movement
+            velocity.x -= velocity.x * 10.0 * delta;
+            velocity.z -= velocity.z * 10.0 * delta;
+
+            direction.z = Number(moveBackward) - Number(moveForward);
+            direction.x = Number(moveRight) - Number(moveLeft);
+            direction.normalize();
+
+            if (moveForward || moveBackward) velocity.z -= direction.z * 45.0 * delta;
+            if (moveLeft || moveRight) velocity.x -= direction.x * 45.0 * delta;
+
+            camera.translateX(-velocity.x * delta);
+            camera.translateZ(-velocity.z * delta);
+
+            camera.position.x = Math.max(-32, Math.min(32, camera.position.x));
+            camera.position.z = Math.max(-32, Math.min(32, camera.position.z));
+            camera.position.y = 1.6;
+
+            // Power-up collection check
+            powerUps.forEach((p, idx) => {
+                p.mesh.rotation.y += 0.03;
+                if (camera.position.distanceTo(p.mesh.position) < 2.5) {
+                    playSound('powerup');
+                    if (p.type === 'shield') {
+                        hasShield = true;
+                        showPowerUpToast("🛡️ PERISAI DIAKTIFKAN!");
+                    } else if (p.type === 'time') {
+                        timeLeft += 15;
+                        showPowerUpToast("⏱️ MASA TAMBAHAN +15SAAT!");
+                    } else if (p.type === 'ammo') {
+                        ammo = maxAmmo;
+                        showPowerUpToast("🔋 PELURU DIPENUHKAN!");
+                    }
+                    updateHUD();
+                    scene.remove(p.mesh);
+                    powerUps.splice(idx, 1);
+                }
+            });
+
+            // Target movement & AI counter-attack shooting
+            const time = Date.now() * 0.003;
+            targets.forEach((t) => {
+                t.mesh.rotation.x += 0.01;
+                t.mesh.rotation.y += 0.02;
+                t.mesh.position.y += Math.sin(time + t.floatOffset) * 0.01;
+
+                // Moving enemies drift towards player if enabled
+                if (t.isMoving) {
+                    const dirToPlayer = new THREE.Vector3().subVectors(camera.position, t.mesh.position).normalize();
+                    t.mesh.position.addScaledVector(dirToPlayer, 0.015 * wave);
+                }
+
+                // Enemy shooting back
+                if (t.canShoot) {
+                    t.shootCooldown -= delta;
+                    if (t.shootCooldown <= 0) {
+                        t.shootCooldown = Math.random() * 3 + 2;
+                        // Spawn projectile towards player
+                        const pGeo = new THREE.SphereGeometry(0.3, 8, 8);
+                        const pMat = new THREE.MeshBasicMaterial({ color: 0xff0055 });
+                        const pMesh = new THREE.Mesh(pGeo, pMat);
+                        pMesh.position.copy(t.mesh.position);
+                        scene.add(pMesh);
+
+                        const velocityDir = new THREE.Vector3().subVectors(camera.position, t.mesh.position).normalize().multiplyScalar(0.4);
+                        projectiles.push({
+                            mesh: pMesh,
+                            velocity: velocityDir,
+                            life: 4.0
+                        });
+                    }
+                }
+            });
+
+            // Update enemy projectiles
+            projectiles.forEach((proj, idx) => {
+                proj.mesh.position.add(proj.velocity);
+                proj.life -= delta;
+
+                // Collision with player
+                if (proj.mesh.position.distanceTo(camera.position) < 1.2) {
+                    playSound('hurt');
+                    triggerDamageFlash();
+                    scene.remove(proj.mesh);
+                    projectiles.splice(idx, 1);
+
+                    if (hasShield) {
+                        hasShield = false;
+                        showPowerUpToast("🛡️ Perisai menyerap tembakan musuh!");
+                    } else {
+                        lives--;
+                    }
+                    updateHUD();
+                    if (lives <= 0) endGame(false);
+                } else if (proj.life <= 0) {
+                    scene.remove(proj.mesh);
+                    projectiles.splice(idx, 1);
+                }
+            });
+
+            // Update particle explosions
+            particles.forEach((p, idx) => {
+                p.mesh.position.add(p.velocity);
+                p.life -= delta * 2;
+                p.mesh.scale.multiplyScalar(0.95);
+                if (p.life <= 0) {
+                    scene.remove(p.mesh);
+                    particles.splice(idx, 1);
+                }
+            });
+
+            renderer.render(scene, camera);
+        }
+
+        function endGame(isVictory) {
+            gameRunning = false;
+            clearInterval(timerInterval);
+            document.exitPointerLock();
+
+            document.getElementById('hud-header').classList.add('hidden');
+            document.getElementById('crosshair').classList.add('hidden');
+            document.getElementById('screen-gameover').classList.remove('hidden');
+
+            document.getElementById('go-final-score').innerText = score;
+            document.getElementById('go-final-wave').innerText = wave;
+            
+            if (isVictory) {
+                document.getElementById('go-icon').innerText = '🏆';
+                document.getElementById('go-title').innerText = 'Misi Berjaya!';
+                document.getElementById('go-title').className = 'text-2xl sm:text-3xl font-bold text-cyan-400 mb-2 neon-glow';
+                document.getElementById('go-desc').innerText = 'Tahniah! Anda telah membersihkan semua pelayan daripada ancaman virus tahap tinggi.';
+            } else {
+                document.getElementById('go-icon').innerText = '💥';
+                document.getElementById('go-title').innerText = 'Misi Gagal!';
+                document.getElementById('go-title').className = 'text-2xl sm:text-3xl font-bold text-rose-500 mb-2 neon-rose';
+                document.getElementById('go-desc').innerText = 'Sistem telah dikunci atau nyawa anda habis. Cuba sekali lagi!';
+            }
+        }
+
+        function restartGame() {
+            document.getElementById('screen-gameover').classList.add('hidden');
+            document.getElementById('screen-welcome').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
