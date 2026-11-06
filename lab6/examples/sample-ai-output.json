@@ -1,0 +1,14 @@
+{
+  "classification": "actionable",
+  "component": "Unknown",
+  "category": "UI",
+  "priority": "Low",
+  "summary": "Change login button colour",
+  "detailed_description": "Change the login button from green to blue to better match the company's branding.",
+  "acceptance_criteria": [
+    "The login button displays the approved blue colour.",
+    "The button remains readable and usable."
+  ],
+  "clarification_questions": [],
+  "duplicate_notes": "No duplicate evidence in this submission"
+}

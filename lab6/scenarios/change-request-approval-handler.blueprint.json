@@ -1,0 +1,128 @@
+{
+  "name": "Change Request Approval Handler",
+  "flow": [
+    {
+      "id": 1,
+      "module": "gateway:CustomWebHook",
+      "version": 1,
+      "parameters": {
+        "hook": 4022076
+      },
+      "metadata": {
+        "designer": {
+          "x": 0,
+          "y": 0
+        }
+      }
+    },
+    {
+      "id": 2,
+      "module": "datastore:GetRecord",
+      "version": 1,
+      "parameters": {
+        "datastore": 242031
+      },
+      "mapper": {
+        "key": "{{1.token}}",
+        "returnWrapped": false
+      },
+      "metadata": {
+        "designer": {
+          "x": 300,
+          "y": 0,
+          "name": "Find approval token"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "module": "datastore:UpdateRecord",
+      "version": 1,
+      "parameters": {
+        "datastore": 242031
+      },
+      "filter": {
+        "name": "Pending token and valid decision",
+        "conditions": [
+          [
+            {
+              "a": "{{2.status}}",
+              "b": "pending",
+              "o": "text:equal"
+            },
+            {
+              "a": "{{1.decision}}",
+              "b": "approve",
+              "o": "text:equal"
+            }
+          ],
+          [
+            {
+              "a": "{{2.status}}",
+              "b": "pending",
+              "o": "text:equal"
+            },
+            {
+              "a": "{{1.decision}}",
+              "b": "reject",
+              "o": "text:equal"
+            }
+          ]
+        ]
+      },
+      "mapper": {
+        "key": "{{1.token}}",
+        "data": {
+          "status": "{{if(1.decision = \"approve\"; \"approved\"; \"rejected\")}}",
+          "decision": "{{1.decision}}",
+          "created_at": "{{2.created_at}}",
+          "request_id": "{{2.request_id}}"
+        },
+        "upsert": false,
+        "overwriteArrays": false
+      },
+      "metadata": {
+        "designer": {
+          "x": 600,
+          "y": 0,
+          "name": "Record first decision only"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "module": "gateway:WebhookRespond",
+      "version": 1,
+      "mapper": {
+        "body": "Your decision has been recorded. You may close this page.",
+        "status": 200
+      },
+      "metadata": {
+        "designer": {
+          "x": 900,
+          "y": 0,
+          "name": "Confirm recorded decision"
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "instant": true,
+    "version": 1,
+    "scenario": {
+      "roundtrips": 1,
+      "maxErrors": 3,
+      "autoCommit": true,
+      "sequential": false,
+      "slots": null,
+      "confidential": false,
+      "dataloss": false,
+      "dlq": false
+    },
+    "designer": {
+      "orphans": []
+    },
+    "zone": "eu1.make.com",
+    "notes": []
+  }
+}

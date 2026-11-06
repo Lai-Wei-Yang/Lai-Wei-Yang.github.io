@@ -1,0 +1,78 @@
+[
+  {
+    "help": "actionable, needs_clarification, or spam",
+    "name": "classification",
+    "type": "text",
+    "label": "Classification",
+    "required": true,
+    "multiline": false
+  },
+  {
+    "help": "",
+    "name": "component",
+    "type": "text",
+    "label": "Component",
+    "required": true,
+    "multiline": false
+  },
+  {
+    "help": "",
+    "name": "category",
+    "type": "text",
+    "label": "Category",
+    "required": true,
+    "multiline": false
+  },
+  {
+    "help": "High, Medium, Low, or Unassigned",
+    "name": "priority",
+    "type": "text",
+    "label": "Priority",
+    "required": true,
+    "multiline": false
+  },
+  {
+    "help": "",
+    "name": "summary",
+    "type": "text",
+    "label": "Summary",
+    "required": true,
+    "multiline": false
+  },
+  {
+    "help": "",
+    "name": "detailed_description",
+    "type": "text",
+    "label": "Detailed description",
+    "required": true,
+    "multiline": true
+  },
+  {
+    "help": "",
+    "name": "acceptance_criteria",
+    "spec": {
+      "type": "text"
+    },
+    "type": "array",
+    "label": "Acceptance criteria",
+    "required": true
+  },
+  {
+    "help": "",
+    "name": "clarification_questions",
+    "spec": {
+      "type": "text"
+    },
+    "type": "array",
+    "label": "Clarification questions",
+    "required": true
+  },
+  {
+    "help": "",
+    "name": "duplicate_notes",
+    "type": "text",
+    "label": "Duplicate notes",
+    "required": true,
+    "multiline": false
+  }
+]

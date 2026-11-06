@@ -1,0 +1,11 @@
+.env
+.env.*
+!.env.example
+credentials.json
+token.json
+secrets.json
+client-data/
+private-data/
+*.log
+.DS_Store
+Thumbs.db
